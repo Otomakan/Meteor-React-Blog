@@ -4,10 +4,11 @@ import { BrowserRouter, Switch,Route, Router} from 'react-router-dom';
 // import { Route, Router } from 'react-router'
 import { Meteor } from 'meteor/meteor'
 
-import Home from '../imports/ui/home.jsx'
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+
+
 import App from '../imports/ui/App.jsx'
-import Repos from '../imports/ui/Repos.jsx'
-import {About} from '../imports/ui/About.jsx'
 
 import { Posts } from '../imports/api/blogs.js'
 // const browserHistory = createBrowserHistory();
@@ -15,27 +16,36 @@ import { Posts } from '../imports/api/blogs.js'
 
 import { createContainer } from 'react-meteor-data'
 
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 
 
  class Routes extends Component {
+ 	constructor(props){
+ 		super(props)
+ 		this.state = {
+ 			loading: true
+ 		}
+ 	}
  	componentWillMount(){
  		// console.log(this.props.posts)
  	}
+
+
+	componentDidMount(){
+		this.setState({loading:false}, 1500)
+	}
 	render(){
+		if(this.state.loading)
+			return null
+		
 		return(
-	<BrowserRouter>
-
-			<div>
-	 	<App posts={this.props.posts}/>
-		<Route path="/about" component={About}/>
-
-		<Route path="/repos" component={Repos}/>
-
-		<Route path="/home" component={Home}/>
-	 </div>
-</BrowserRouter>
-	 )
+		<BrowserRouter>
+			<MuiThemeProvider>
+		 	<App posts={this.props.posts}/>	 		
+			</MuiThemeProvider>
+		</BrowserRouter>
+		 )
 }
 }
 
@@ -48,6 +58,6 @@ import { createContainer } from 'react-meteor-data'
 export default createContainer(()=>{
 	Meteor.subscribe('posts')
 	return {
-		posts: Posts.find().fetch()
+		posts: Posts.find({}, {limit: 6}).fetch()
 	}
 },Routes)

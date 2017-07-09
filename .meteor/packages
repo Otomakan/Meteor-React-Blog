@@ -18,3 +18,5 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 shell-server@0.2.3            # Server-side component of the `meteor shell` command
 
 react-meteor-data
+fourseven:scss
+poetic:materialize-scss
