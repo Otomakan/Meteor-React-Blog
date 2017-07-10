@@ -34,6 +34,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 	componentDidMount(){
 		this.setState({loading:false});
+		alert('to');
 	}
 	render(){
 		// This waits or componentdidmount to be ready a displays loaders until components ready
