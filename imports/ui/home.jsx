@@ -7,13 +7,19 @@ import {Paper} from 'material-ui'
 export default class Home extends Component {
 
 	renderPosts(){
-		// Check if props is defined
-		console.log(this.props.posts)
 		let blogs = this.props.posts;
-		return blogs.map((blog, index)=>
-			<Paper key={index} className="home-left">
-				{blog.object.title}
-			</Paper> 
+		// Map of the 6 latest blog posts
+		return blogs.map((blog, index)=>{
+			console.log(blog.object.featured_image)
+
+		
+			
+			return (<Paper key={index} className="home-left">
+
+				<img src={blog.object.featured_image}/>
+				<h1>{blog.object.title}</h1>
+				</Paper>) 
+		}
 		);
 	}
 

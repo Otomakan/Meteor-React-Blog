@@ -38,6 +38,7 @@ nav {
   border-radius: 50%;
   width: 10em;
   height: 10em;
+  transition: all 2s;
 }
 .loader:empty {
   margin: 60px auto;
@@ -87,56 +88,72 @@ nav {
 }
 
 .home-left{
-		// height:100%;
-		transform: scale(0.99);
-  		@include shadow(1);
-		// transform: scale(0.96);
-		&:nth-child(1) {
-			height:33.333%;
-			width:25%;
-			background-color:$pink;
+	padding:0;
+	transform: scale(0.99);
+		@include shadow(1);
+	// transform: scale(0.96);
+	&:nth-child(1) {
+		height:33.333%;
+		width:25%;
+		background-color:$pink;
 		}
 
-		/* two items */
-		&:nth-child(2){
-		  	background:$blue;
-		  	height:33.333%;
-			width:25%;
-		}
-		&:nth-child(3) {
-			background:$green;
-			width:25%;
-			height:33.334%;
-		}
-
-		/* two items */
-		&:nth-child(4){
-		  	height:100%;
-			width:50%;
-		  	background:$purple;
-		  	// transform: scale(1);
-		}
-		&:nth-child(5) {
-			background:$blue;
-			height:35%;
-			width:25%;
-		}
-		&:nth-child(6) {
-			background:$pink;
-			height:65%;
-			width:25%;
-		}
-
-		  &:hover,&:focus {
-    @include shadow(3);
-    transform:translateY(-5px);
-  }
-  &:active {
-    @include shadow(2);
-    transform:translateY(-2px);
-  }
-
+	/* two items */
+	&:nth-child(2){
+	  	background:$blue;
+	  	height:33.333%;
+		width:25%;
 	}
+	&:nth-child(3) {
+		background:$green;
+		width:25%;
+		height:33.334%;
+	}
+	/* two items */
+	&:nth-child(4){
+	  	height:100%;
+		width:50%;
+	  	background:$purple;
+	}
+	&:nth-child(5) {
+		background:$blue;
+		height:35%;
+		width:25%;
+	}
+	&:nth-child(6) {
+		background:$pink;
+		height:65%;
+		width:25%;
+	}
+
+	 &:hover,&:focus {
+	  @include shadow(3);
+	    transform:translateY(-5px);
+	  }
+	  &:active {
+	    @include shadow(2);
+	    transform:translateY(-2px);
+	  }
+	  h1{
+	  	font-size: 30px;
+	  	padding:0;
+	  	position:relative;
+	  	z-index:2;
+	  }
+	  img {
+	  	top:0;
+bottom:0;
+left:0;
+right:0;
+	    max-width: 100%;
+	    max-height: 100%;
+	    margin:auto;
+	    position:absolute;
+	    padding:0;
+	    z-index: 1;
+	    overflow:hidden;
+	}
+}
 
 
 

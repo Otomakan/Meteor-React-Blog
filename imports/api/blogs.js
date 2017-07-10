@@ -26,25 +26,19 @@ if (Meteor.isServer) {
 // Re
 Meteor.methods({
 	'add-entry'(object){
-		// if(Posts.)
-	if(Posts.find({}).fetch().length === 0 && object !== undefined){
-		Posts.insert({object})
-	}
+		if(Posts.find({}).fetch().length === 0 && object !== undefined){
+			Posts.insert({object})
+		}
 
-	if(Posts.find({"object.title": object.title}).fetch().length==1)
-		return
+		if(Posts.find({"object.title": object.title}).fetch().length==1)
+			return
 
-	else
-		Posts.insert({object})
-// .fetch().map((post)=>{
-			
-// 			console.log('hap')
-// 			// if(post.object.slug === object.slug)
-// 				Posts.insert({object})
-// 		})
+		else
+			Posts.insert({object})
+
 	},
+
 	'remove-all'(){
-		
 		Posts.remove({})
 	}
 })
