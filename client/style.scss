@@ -1,5 +1,6 @@
 
 @import '{}/node_modules/materialize-css/sass/materialize.scss';
+@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Permanent+Marker');
 
 $beige: #F7ECCA;
 $blue: #A9DEF9;
@@ -235,15 +236,50 @@ nav {
 }
 
 // blog Post Styling
+// .blog-image{
+// 	margin:auto;
+// 	width:100vw;
+// 	display:block;
+// }
+.blog-image {
+	width: 40vw;
+	height: 40vw;
+	display:inline-block;
+	margin: 100px 35vw;
+	background-color: white;
+	border-radius: 5px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 
-.blog-image img{
-	width: 80vw;
-	height: 30vh;
-	position:relative;
-	margin:auto;
-	right:0;
-	left:0;
-	margin-top: 50px;
+	text-align:center;
+
+	// vertical-align:middle;
+}
+@function stroke($stroke, $color) {
+  $shadow: ();
+  $from: $stroke*-1;
+  @for $i from $from through $stroke {
+   @for $j from $from through $stroke {
+      $shadow: append($shadow, $i*1px $j*1px 0 $color, comma);
+    }
+  }
+  @return $shadow;
+}
+
+.blog-image{
+	img{
+		height:76%;
+		display:block;
+		// border-radius: 5px;
+		margin: 5% auto;
+		box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	}
+	h1{
+		color: black;
+		margin:0.2em auto;
+		font-size:2.6em;
+		font-family: 'Permanent Marker', cursive;
+	}
 
 }
+
 

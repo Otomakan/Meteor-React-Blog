@@ -60,6 +60,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 export default createContainer(()=>{
 	Meteor.subscribe('posts')
 	return {
-		posts: Posts.find({}, {limit: 6}).fetch()
+		posts: Posts.find({}, {limit: 7}).fetch()
 	}
 },Routes)

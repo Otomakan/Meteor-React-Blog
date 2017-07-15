@@ -8,7 +8,7 @@ import Navbar from './Navbar.jsx'
 import Home from './home.jsx'
 import Repos from './Repos.jsx'
 import About from './About.jsx'
-import BlogPost from './blogpost.jsx'
+import BlogPost from './blogpost/blogpost.jsx'
 
 import RaisedButton from 'material-ui/RaisedButton'
 

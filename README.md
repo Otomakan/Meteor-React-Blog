@@ -38,3 +38,7 @@ Think about introducing a  statemnt to catch if the result of the fetch is null
 think about populating the state like this when you go from one post to the other you can simply change the states. 
 
 should I have an other db with sluf matched with ids to find stuff more quickly in the db?
+
+Make all of the Home elements squares to remind of the post its and have colorful borders. aybe put the otpion inn the cms to change the color by adding an element qchi we can include in the style={};
+
+For the data loading use example 2 of : https://jimmylv.gitbooks.io/reactjs-in-meteor-doc-zh/content/docs/meteor-data.html

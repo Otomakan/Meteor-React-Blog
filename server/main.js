@@ -20,7 +20,6 @@ Meteor.startup(() => {
 			// console.log(data.data.data)
 		data.data.data.map(
 			(obj)=>{
-				console.log(obj)
 				Meteor.call('add-entry',obj)
 			})
 	})

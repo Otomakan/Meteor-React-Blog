@@ -15,7 +15,12 @@ export default class Home extends Component {
 			var linkTo = "blog/"+ blog.slug
 			let content = {
 				title: blog.title,
-				image: blog.featured_image
+				image: blog.featured_image,
+				author: blog.author,
+				created: blog.created,
+				tags: blog.tags,
+				summary:blog.summary,
+				body: blog.body
 			}
 			return (
 				<Link  key={index} className="home-left"to={{pathname: linkTo, 

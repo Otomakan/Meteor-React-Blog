@@ -1,20 +1,12 @@
 
 import { Mongo } from 'meteor/mongo'
 import { Meteor } from 'meteor/meteor'
-// const Resp 
-
-
-// const Resp = butter.post.list()
-// .then(function(respons){
-// 	return respons
-// });
 
 
 export const Posts = new Mongo.Collection('posts')
 
 // // Get page content
-// let resp = await butter.content.retrieve(['homepage'])
-// console.log({content: resp.data.data})
+
 if (Meteor.isServer) {
   // This code only runs on the server
   Meteor.publish('posts', function postsPublication() {
@@ -23,18 +15,21 @@ if (Meteor.isServer) {
 }
 // Redo the way you update data to get shorter queries
 
-// Re
 Meteor.methods({
 	'add-entry'(object){
+		// See if the database is empty
 		if(Posts.find({}).fetch().length === 0 && object !== undefined){
-			Posts.insert({object})
+			console.log('First database initialisation')
+			Posts.insert(object)
 		}
-
-		if(Posts.find({"object.title": object.title}).fetch().length==1)
+		// if not see if the post already exists in the database
+		else if(Posts.find({"title": object.title}).fetch().length>0){
 			return
-
-		else
-			Posts.insert({object})
+		}
+		else{
+			console.log("Inserting Post: "+object.title)
+			Posts.insert(object)
+		}
 
 	},
 
