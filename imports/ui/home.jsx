@@ -2,26 +2,36 @@ import React, { Component } from 'react';
 import Resp from '../api/blogs.js'
 import {Router, Route, IndexRoute, browserHistory } from 'react-router'
 import {Paper} from 'material-ui'
+import {Link} from 'react-router-dom'
 // App component - represents the whole app
 
 export default class Home extends Component {
 
 	renderPosts(){
 		let blogs = this.props.posts;
-		// Map of the 6 latest blog posts
+		console.log(blogs)
+		// Map of the 6 latest blog postsloaded in Apps jsx only way to do it otherwise you get an empty array at first shot and everything shuts down
 		return blogs.map((blog, index)=>{
-			console.log(blog.object.featured_image)
+			var linkTo = "blog/"+ blog.slug
+			let content = {
+				title: blog.title,
+				image: blog.featured_image
+			}
+			return (
+				<Link  key={index} className="home-left"to={{pathname: linkTo, 
+					state: content}}  
+				style={{textDecoration: 'none', color: 'white'}}>
+					<Paper>
 
-		
-			
-			return (<Paper key={index} className="home-left">
-
-				<img src={blog.object.featured_image}/>
-				<h1>{blog.object.title}</h1>
-				</Paper>) 
-		}
-		);
+					<img src={blog.featured_image}/>
+					 <h1>{blog.title}</h1>
+					</Paper>
+				</Link>
+				) 
+		})
 	}
+	
+	
 
 
 	componentWillMount(){
@@ -30,7 +40,6 @@ export default class Home extends Component {
 	render(){
 		return(
 			<div className="container">
-				<header> My Blog </header>
 				 <div className="home-header">
 				 {this.renderPosts()}
 				 </div>
@@ -38,6 +47,4 @@ export default class Home extends Component {
 			</div>
 		)
 	}
-
-
 }

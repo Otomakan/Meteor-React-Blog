@@ -8,14 +8,15 @@ import Navbar from './Navbar.jsx'
 import Home from './home.jsx'
 import Repos from './Repos.jsx'
 import About from './About.jsx'
+import BlogPost from './blogpost.jsx'
 
-import RaisedButton from 'material-ui/RaisedButton';
+import RaisedButton from 'material-ui/RaisedButton'
 
 
 
 const navbar =  {};
 navbar.brand = 
-  {linkTo: "#", text: "Hoe Or No!"};
+  {linkTo: "#", text: "Hoe Or No!"}
  navbar.title = {
  	linkTo: "/home"
  }
@@ -43,6 +44,9 @@ export default class App extends Component {
 		})
 	}
 	
+	findPost(){
+
+	}
 	
 	componentWillMount(){
 
@@ -64,7 +68,9 @@ export default class App extends Component {
 
 			<Route path="/about" component={About}/>
 			<Route path="/repos" component={Repos}/>
-			<PropsRoute exact path="/" component={Home} posts={this.props.posts}/>
+			<Route path="/blog/:slug" component={BlogPost} posts={this.props.posts}/>
+			<PropsRoute exact path="/" component={Home} 
+			posts={this.props.posts}/>
 	
 		</div>
 		)
