@@ -42,3 +42,15 @@ should I have an other db with sluf matched with ids to find stuff more quickly 
 Make all of the Home elements squares to remind of the post its and have colorful borders. aybe put the otpion inn the cms to change the color by adding an element qchi we can include in the style={};
 
 For the data loading use example 2 of : https://jimmylv.gitbooks.io/reactjs-in-meteor-doc-zh/content/docs/meteor-data.html
+
+Next to the blog picture have some sticky notes which are comments from users comme des languettes. or maybe it can be a consteltion of related recipes.
+
+Create a loader in blogpost.jsx at the render method level where now there is a brief title. 
+
+See if the  findRelatedPosts function in blogpost.jsx is good and maybe if the limit is too high, it seems like there would be more performent methods of finding tags. Also How to make sure that all these posts fetched are not still in memory somewhere using valuable space.
+
+Reorganize the state of blogpost.jsx have: main-post{slug, content, image}, nextpost{} maybe deal with the fact that we can have multiple posts so create that content dynamicaly
+
+
+				<Link to={{pathname:this.state.nextPostslug}}>Next Slug</Link>
+this will kill the app you have to Change all the states when the slug changes. Now everytime I change from one slug to the other the CPU catches fire
