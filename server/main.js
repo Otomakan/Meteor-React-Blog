@@ -18,6 +18,8 @@ Meteor.startup(() => {
 	ButterList.then((data)=>{		// .data 
 			// this.getPosts(Resp);
 			// console.log(data.data.data)
+			
+				Meteor.call('remove-all')
 		data.data.data.map(
 			(obj)=>{
 				Meteor.call('add-entry',obj)
