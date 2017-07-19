@@ -20,7 +20,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 
 
- class Routes extends Component {
+ export default class Routes extends Component {
  	constructor(props){
  		super(props)
  		this.state = {
@@ -44,7 +44,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 		return(
 		<BrowserRouter>
 			<MuiThemeProvider>
-		 	<App posts={this.props.posts}/>	 		
+		 	<App />	 		
 			</MuiThemeProvider>
 		</BrowserRouter>
 		 )
@@ -52,14 +52,12 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 }
 
 
- Routes.propTypes ={
- 	posts: PropTypes.array.isRequired,
- }
+ // Routes.propTypes ={
+ // 	posts: PropTypes.array.isRequired,
+ // }
 
 
-export default createContainer(()=>{
-	Meteor.subscribe('posts')
-	return {
-		posts: Posts.find({}, {limit: 7}).fetch()
-	}
-},Routes)
+// export default createContainer(()=>{
+// 	handle = Meteor.subscribe('posts')
+
+// },Routes)

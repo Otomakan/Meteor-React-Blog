@@ -14,12 +14,15 @@ class BlogPost extends Component {
 		super(props)
 		if(this.props.location.state){
 			let blogpost = this.props.location.state;
-			console.log(blogpost.title)
+			console.log('blogpost')
+			console.log(blogpost)
+			console.log('existing location state')
 			this.state={
-				title: blogpost.title || 'no-title',
-				image: blogpost.image || 'empty',
-				content: blogpost.body || 'alternative',
-				// author: blog.author,
+				title: blogpost.title || null,
+				image: blogpost.image || null,
+				content: blogpost.body || null,
+				author: blogpost.author|| null,
+				slug: blogpost.slug || null,
 				// created: blog.created,
 				// tags: blog.tags,
 				// summary:blog.summary
@@ -28,7 +31,7 @@ class BlogPost extends Component {
 		}
 		else{
 			this.state={
-				title: null,
+				title: 'who cares',
 				image: null,
 				content: null,
 				post: null,				
@@ -37,12 +40,17 @@ class BlogPost extends Component {
 		}	
 	}
 	componentWillMount(){
-		console.log(this.props)
 	}
 	//Collect the data from the create container
 	componentWillReceiveProps(props){
-		console.log(props.blogpost[0].tags)
-		console.log(props.relatedPosts)
+		console.log(props.match.params.slug+ ' : ' + this.state.slug)
+		if(props.match.params.slug=== this.state.slug){
+			console.log('same slug')
+			return
+
+		}
+console.log(props.relatedPosts)
+		console.log('getting props')
 		let that = this
 			// Something strang happening if I put else statement aroung the post display a correct sluf search calls unknownPost
 		if( !props.dataReady )
@@ -52,14 +60,15 @@ class BlogPost extends Component {
 		else if( props.blogpost.length===0 )
 			this.unknownPost()
 		
-		//display bldog post if data is ready and if didnt return empty array.  
+		//display bldog post if data is ready and if didnt return empty array.
+
 		else{
 			this.displayPost(props.blogpost[0]);
-			this.nextPost(props.relatedPosts[0])
+			this.nextPostSlug(props.relatedPosts[0])
 		}
 		
 	}
-	nextPost(post){
+	nextPostSlug(post){
 		this.setState({
 			nextPostslug: post.slug
 		})
@@ -84,8 +93,9 @@ class BlogPost extends Component {
 	displayPost(post){
 		this.setState({
 			title: post.title||"Post not Found :(",
-			image: post.featured_image,
-			content: post.body || "Try looking some other amazing recipes"
+			image: post.featuredImage.fields.file.url || 'nop',
+			content: post.body || "Try looking some other amazing recipes",
+			author:  post.author[0].fields.name || 'No Author'
 		})
 
 	}
@@ -101,15 +111,37 @@ class BlogPost extends Component {
 		})
 	}
 
+	nextPost(){
+		console.log(this.props.relatedPosts)
+		let blog = this.props.relatedPosts[0]
+		console.log(this.props.relatedPosts[0])
+		return 	 {
+				title: blog.title,
+				image: blog.featuredImage.fields.file.url||'no-image',
+				author: blog.author[0].fields.name,
+				created: blog.created,
+				tags: blog.tags,
+				summary:blog.summary,
+				body: blog.body,
+				slug: blog.slug
+			}
+	}
+	aboutLink(){
+		console.log(this.props.relatedPost)
+		return (this.props.relatedPost)? 
+		<Link  to={{pathname: this.state.nextPostslug, state: this.nextPost()}}>About</Link>
+				: <Link  to={{pathname: this.state.nextPostslug}}>About</Link>
+
+	}
 
 	render(){
-		// console.log(this.props.blogpost)\
-		// if(this.props.blogpost !== undefined && this.props.blogpost !== null){
-		// console.log(this.props.blogpost)
-		return this.props.dataReady ? 
+		return (this.props.dataReady) ? 
 			<div className="blog-post">
-				<Link to={{pathname: this.state.nextPostslug, text:'about'}}>About</Link>
+				<h3> A blog by {this.state.author}</h3>
+				{this.aboutLink()}
+
 				<Content post={this.state}/>
+
 
 			</div> 
 		: <div className="blogpost"> <h1> yoooooooooo</h1><h1>fdsfd</h1></div>
@@ -127,14 +159,17 @@ export default BlogPostContainer = createContainer((props)=>{
 	let relatedPosts
 	let doc = Posts.find({slug: props.match.params.slug}).fetch()
 	// .fetch()
-	console.log(handle)
+	// console.log(handle)
 	if(handle.ready()){
+
+	console.log(doc[0])
 		relatedPosts = findRelatedPosts(Posts, 'food', 1, doc[0]._id)
 	}
 	// console.log(Posts.count())
 	let hasnex = Posts.find({'slug':props.match.params.slug})
-
 	console.log(relatedPosts)
+
+	// console.log(relatedPosts)
 	return {
 		dataReady: handle.ready(),
 		blogpost:  doc ? doc : null,
@@ -145,7 +180,7 @@ export default BlogPostContainer = createContainer((props)=>{
 
 function findRelatedPosts(db, tags, numbPostsNeeded, excludeIds){
 	let final =[]
-	 sameTagsPosts= db.find({'tags.name': tags, _id: {$ne:excludeIds}},{limit:30}).fetch()
+	 sameTagsPosts= db.find({'tags': tags, _id: {$ne:excludeIds}},{limit:30}).fetch()
 	
 	//gets a random 
 	let exception=[-1]

@@ -68,9 +68,8 @@ export default class App extends Component {
 
 			<Route path="/about" component={About}/>
 			<Route path="/repos" component={Repos}/>
-			<Route path="/blog/:slug" component={BlogPost} posts={this.props.posts}/>
-			<PropsRoute exact path="/" component={Home} 
-			posts={this.props.posts}/>
+			<Route path="/blog/:slug" component={BlogPost}/>
+			<PropsRoute exact path="/" component={Home} />
 	
 		</div>
 		)
@@ -89,7 +88,6 @@ export default class App extends Component {
 // These two const allow to render react  classes and not have to create an object to render which refers to a component
 const renderMergedProps = (component, ...rest) => {
   const finalProps = Object.assign({}, ...rest);
-	console.log(...rest)
   	return (
     	React.createElement(component, finalProps)
   	);

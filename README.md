@@ -54,3 +54,7 @@ Reorganize the state of blogpost.jsx have: main-post{slug, content, image}, next
 
 				<Link to={{pathname:this.state.nextPostslug}}>Next Slug</Link>
 this will kill the app you have to Change all the states when the slug changes. Now everytime I change from one slug to the other the CPU catches fire
+
+In order to delay the queries without slowing down the page display maybe we should add the queries inside of compoenents which are only loaded when everything is mounted
+
+[] Improve the searching code and make it adapt to : no similar tag found, find multiple other posts. 
