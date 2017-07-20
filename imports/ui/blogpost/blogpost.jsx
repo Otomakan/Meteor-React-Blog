@@ -14,9 +14,6 @@ class BlogPost extends Component {
 		super(props)
 		if(this.props.location.state){
 			let blogpost = this.props.location.state;
-			console.log('blogpost')
-			console.log(blogpost)
-			console.log('existing location state')
 			this.state={
 				title: blogpost.title || null,
 				image: blogpost.image || null,
@@ -26,7 +23,16 @@ class BlogPost extends Component {
 				// created: blog.created,
 				// tags: blog.tags,
 				// summary:blog.summary
-				nextPostslug: ''
+				nextPost:{
+					title: null,
+					image: null,
+					author: null,
+					created: null,
+					tags: null,
+					summary: null,
+					body: null,
+					slug: null
+				}
 			}	
 		}
 		else{
@@ -35,42 +41,82 @@ class BlogPost extends Component {
 				image: null,
 				content: null,
 				post: null,				
-				nextPostslug: ''
+				nextPost:{
+					title: null,
+					image: null,
+					author: null,
+					created: null,
+					tags: null,
+					summary: null,
+					body: null,
+					slug: null
+				}
 			}	
-		}	
+		}
 	}
+
 	componentWillMount(){
 	}
 	//Collect the data from the create container
+	componentWillUpdate(){
+		// console.log('componentWillUpdate')
+	}
 	componentWillReceiveProps(props){
-		console.log(props.match.params.slug+ ' : ' + this.state.slug)
-		if(props.match.params.slug=== this.state.slug){
-			console.log('same slug')
-			return
+		//Displays the current post and gets the next one. This doesn't make great use of the props
+		// console.log(props.location.state)
+		//Check if it is a direct link if not display the props thanks to the previous loading of the post
+		if(props.location.state)
+			this.displayPreviousProps(props.location.state)
+		//if it is a direct link go use the db data
+		else
+			this.displayFetchedPost(props.blogpost[0])
 
-		}
-console.log(props.relatedPosts)
-		console.log('getting props')
-		let that = this
-			// Something strang happening if I put else statement aroung the post display a correct sluf search calls unknownPost
-		if( !props.dataReady )
-			this.noDataAccess()
-		
-		//If 
-		else if( props.blogpost.length===0 )
-			this.unknownPost()
-		
-		//display bldog post if data is ready and if didnt return empty array.
-
-		else{
-			this.displayPost(props.blogpost[0]);
+		//Load future posts Maybe put that later in the app.
 			this.nextPostSlug(props.relatedPosts[0])
-		}
+
+		// console.log(props.match)
+		// console.log(props.match.params.slug+ ' : ' + this.state.slug)
+		// if(props.match.params.slug=== this.state.slug){
+		// 	console.log('same slug')
+
+		// 	this.nextPostSlug(props.relatedPosts[0])
+		// 	return
+		// }
+
+		// else if( props.blogpost.length===0 )
+		// 	this.unknownPost()
+		
+		// //display bldog post if data is ready and if didnt return empty array.
+
+		// else{
+		// 	this.displayPost(props.blogpost[0]);
+		// 	this.nextPostSlug(props.relatedPosts[0])
+		// }
 		
 	}
-	nextPostSlug(post){
+	displayPreviousProps(blogpost){
 		this.setState({
-			nextPostslug: post.slug
+			title: blogpost.title || null,
+			image: blogpost.image || null,
+			content: blogpost.body || null,
+			author: blogpost.author|| null,
+			slug: blogpost.slug || null,
+		})
+
+	}
+
+	nextPostSlug(blog){
+		this.setState({
+			nextPost:{
+				title: blog.title,
+				image: blog.featuredImage.fields.file.url||'no-image',
+				author: blog.author[0].fields.name,
+				created: blog.created,
+				tags: blog.tags,
+				summary:blog.summary,
+				body: blog.body,
+				slug: blog.slug
+			}
 		})
 	}
 	noDataAccess(){
@@ -90,7 +136,7 @@ console.log(props.relatedPosts)
 			})
 	}
 	
-	displayPost(post){
+	displayFetchedPost(post){
 		this.setState({
 			title: post.title||"Post not Found :(",
 			image: post.featuredImage.fields.file.url || 'nop',
@@ -112,9 +158,9 @@ console.log(props.relatedPosts)
 	}
 
 	nextPost(){
-		console.log(this.props.relatedPosts)
+		// console.log(this.props.relatedPosts)
 		let blog = this.props.relatedPosts[0]
-		console.log(this.props.relatedPosts[0])
+		// console.log(this.props.location.state.title)
 		return 	 {
 				title: blog.title,
 				image: blog.featuredImage.fields.file.url||'no-image',
@@ -127,15 +173,15 @@ console.log(props.relatedPosts)
 			}
 	}
 	aboutLink(){
-		console.log(this.props.relatedPost)
-		return (this.props.relatedPost)? 
-		<Link  to={{pathname: this.state.nextPostslug, state: this.nextPost()}}>About</Link>
-				: <Link  to={{pathname: this.state.nextPostslug}}>About</Link>
+		console.log(this.state.nextPost)
+		return (this.state.nextPost)? 
+		<Link  to={{pathname: this.state.nextPost.slug, state: this.state.nextPost}}>About</Link>
+				: <Link  style={{background:'blue'}}to={{pathname: this.state.nextPost.slug}}>Aboutee</Link>
 
 	}
 
 	render(){
-		return (this.props.dataReady) ? 
+		return (this.props.location.state) ? 
 			<div className="blog-post">
 				<h3> A blog by {this.state.author}</h3>
 				{this.aboutLink()}
@@ -144,7 +190,14 @@ console.log(props.relatedPosts)
 
 
 			</div> 
-		: <div className="blogpost"> <h1> yoooooooooo</h1><h1>fdsfd</h1></div>
+		: (this.props.dataReady)? <div className="blog-post">
+				<h3> A blog by {this.state.author}</h3>
+				{this.aboutLink()}
+
+				<Content post={this.state}/>
+
+
+			</div> : <div className="blogpost"> <h1> yoooooooooo</h1><h1>fdsfd</h1></div> 
 	}
 
 	
@@ -157,18 +210,14 @@ console.log(props.relatedPosts)
 export default BlogPostContainer = createContainer((props)=>{
 	let handle = Meteor.subscribe('posts')
 	let relatedPosts
-	let doc = Posts.find({slug: props.match.params.slug}).fetch()
+	let doc = Posts.find({slug: props.match.params.slug||props.location.state.slug}).fetch()
 	// .fetch()
-	// console.log(handle)
-	if(handle.ready()){
 
-	console.log(doc[0])
+	if(handle.ready() && doc[0]){
 		relatedPosts = findRelatedPosts(Posts, 'food', 1, doc[0]._id)
 	}
 	// console.log(Posts.count())
 	let hasnex = Posts.find({'slug':props.match.params.slug})
-	console.log(relatedPosts)
-
 	// console.log(relatedPosts)
 	return {
 		dataReady: handle.ready(),
@@ -189,8 +238,6 @@ function findRelatedPosts(db, tags, numbPostsNeeded, excludeIds){
 		exception.push(tagNum)
 		final.push(sameTagsPosts[tagNum])
 	}
-	console.log(final)
-	
 	return final
 
 }

@@ -58,3 +58,10 @@ this will kill the app you have to Change all the states when the slug changes. 
 In order to delay the queries without slowing down the page display maybe we should add the queries inside of compoenents which are only loaded when everything is mounted
 
 [] Improve the searching code and make it adapt to : no similar tag found, find multiple other posts. 
+
+[]Problem with the display flow. You should first display the main blog post, then fetch the data for the next 
+
+[] Images have description don' t forget to include that in the alt
+
+[] Limit the ttle lenghts
+
