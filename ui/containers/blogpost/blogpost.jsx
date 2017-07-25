@@ -2,7 +2,7 @@
 
 
 import React, {Component} from 'react'
-import {Posts} from '../../api/blogs.js'
+import {Posts} from '../../../imports/api/blogs.js'
 
 import { createContainer } from 'react-meteor-data'
 import Content from './Content.jsx'
@@ -92,6 +92,8 @@ class BlogPost extends Component {
 		// 	this.displayPost(props.blogpost[0]);
 		// 	this.nextPostSlug(props.relatedPosts[0])
 		// }
+	
+
 		
 	}
 	displayPreviousProps(blogpost){
@@ -172,32 +174,43 @@ class BlogPost extends Component {
 				slug: blog.slug
 			}
 	}
+
+	// If the data fatched is ready this will display a link to the next post
 	aboutLink(){
-		console.log(this.state.nextPost)
+	
+
+		console.log(this.props.location.state)
 		return (this.state.nextPost)? 
 		<Link  to={{pathname: this.state.nextPost.slug, state: this.state.nextPost}}>About</Link>
 				: <Link  style={{background:'blue'}}to={{pathname: this.state.nextPost.slug}}>Aboutee</Link>
 
 	}
+	// Related Post not Found
+	noRelatedPosts(){
+		return <h3> We could not find related Posts</h3>
+	}
 
 	render(){
+		// If we get stuff from the props we might as well use them if not then we go use the data we fetched
 		return (this.props.location.state) ? 
 			<div className="blog-post">
-				<h3> A blog by {this.state.author}</h3>
-				{this.aboutLink()}
+				<h1> This props location state</h1>
+				<h3> A blog by  {this.state.author}</h3>
+				{(this.props.relatedPosts)? this.aboutLink(): this.noRelatedPosts()}
 
 				<Content post={this.state}/>
 
 
 			</div> 
 		: (this.props.dataReady)? <div className="blog-post">
+				<h1> Data Ready</h1>
 				<h3> A blog by {this.state.author}</h3>
 				{this.aboutLink()}
 
 				<Content post={this.state}/>
 
 
-			</div> : <div className="blogpost"> <h1> yoooooooooo</h1><h1>fdsfd</h1></div> 
+			</div> : <div className="blogpost"> <h1> We can't find anything at this address unfortunately </h1><h1>Sorry for your trouble!</h1></div> 
 	}
 
 	
@@ -210,10 +223,13 @@ class BlogPost extends Component {
 export default BlogPostContainer = createContainer((props)=>{
 	let handle = Meteor.subscribe('posts')
 	let relatedPosts
-	let doc = Posts.find({slug: props.match.params.slug||props.location.state.slug}).fetch()
+	
+	let slugIndex = window.location.href.lastIndexOf("/")+1;
+	let currentSlug = window.location.href.substr(slugIndex)
+	
+	let doc = Posts.find({slug: currentSlug || props.match.params.slug||props.location.state.slug}).fetch()
 	// .fetch()
-
-	if(handle.ready() && doc[0]){
+	if(handle.ready() && doc[0] && doc[0].tags){
 		relatedPosts = findRelatedPosts(Posts, 'food', 1, doc[0]._id)
 	}
 	// console.log(Posts.count())

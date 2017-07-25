@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Resp from '../api/blogs.js'
+import Resp from '../../imports/api/blogs.js'
 import {Link, Route } from 'react-router-dom'
 
 // create classes

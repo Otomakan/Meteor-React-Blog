@@ -23,12 +23,21 @@ $purple: #E4C1F9;
 body {
     background-color: $beige;
     padding-top: 70px;
+    width:100vw
 }
 
 nav {
 	.navbar .navbar-default .navbar-custom .navbar-fixed-top{
 		background-color: $blue;
 	}
+}
+
+.image {
+	opacity: 0;
+	transition: opacity 1.1s; 
+}
+.image-loaded { 
+	opacity: 1; 
 }
 .navbar-header.page-scroll{
 	background-color: $beige;

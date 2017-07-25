@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import {Link, Route } from 'react-router-dom'
 
-import {Posts} from '../api/blogs.js'
+import {Posts} from '../../imports/api/blogs.js'
 import {Route} from 'react-router-dom'
 
 import Navbar from './Navbar.jsx'

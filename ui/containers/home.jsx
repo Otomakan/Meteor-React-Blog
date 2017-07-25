@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-import Resp from '../api/blogs.js'
+import Resp from '../../imports/api/blogs.js'
 import {Router, Route, IndexRoute, browserHistory } from 'react-router'
 import {Paper} from 'material-ui'
 import {Link} from 'react-router-dom'
+
 
 import { createContainer } from 'react-meteor-data'
 
 
 import PropTypes from 'prop-types'
-import { Posts } from '../api/blogs.js'
+import { Posts } from '../../imports/api/blogs.js'
+
+import Image from '../components/Image.jsx'
 
 // App component - represents the whole app
 
@@ -35,7 +38,7 @@ class Home extends Component {
 				style={{textDecoration: 'none', color: 'white'}}>
 					<Paper>
 
-					<img src={blog.featuredImage.fields.file.url}/>
+					<Image src={blog.featuredImage.fields.file.url}/>
 					 <h1>{blog.title}</h1>
 					</Paper>
 				</Link>

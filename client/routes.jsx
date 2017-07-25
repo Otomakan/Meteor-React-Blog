@@ -8,7 +8,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 
-import App from '../imports/ui/App.jsx'
+import App from '../ui/containers/App.jsx'
 
 import { Posts } from '../imports/api/blogs.js'
 // const browserHistory = createBrowserHistory();

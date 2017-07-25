@@ -65,3 +65,7 @@ In order to delay the queries without slowing down the page display maybe we sho
 
 [] Limit the ttle lenghts
 
+Later maybe create a version with yeoman to adapt to your headless cms. 
+Also create a version which is completely headless. 
+
+Int the IMage conponent you have to add the alts. 
