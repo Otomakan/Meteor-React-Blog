@@ -64,7 +64,6 @@ export default class App extends Component {
 	render(){
 		return(
 		<div>
-
 			<Navbar brand={navbar.brand} links={navbar.links}/>
 			<Background/>
 			<Route path="/about" component={About}/>

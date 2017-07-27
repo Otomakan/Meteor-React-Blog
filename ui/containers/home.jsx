@@ -12,11 +12,17 @@ import PropTypes from 'prop-types'
 import { Posts } from '../../imports/api/blogs.js'
 
 import Image from '../components/Image.jsx'
+import BigStoryLoader from '../components/BigStoryLoader.jsx'
 
 // App component - represents the whole app
 
 class Home extends Component {
-
+	constructor(props){
+		super(props)
+		this.state={
+			numberOfImagesLoaded :0,
+		}
+	}
 	renderPosts(){
 		let blogs = this.props.posts;
 		// Map of the 6 latest blog postsloaded in Apps jsx only way to do it otherwise you get an empty array at first shot and everything shuts down
@@ -33,7 +39,7 @@ class Home extends Component {
 				slug: blog.slug
 			}
 			return (
-				<Link  key={index} className="home-left"to={{pathname: linkTo, 
+				<Link  key={index} imageLoaded={this.imageLoaded()} className="home-left"to={{pathname: linkTo, 
 					state: content}}  
 				style={{textDecoration: 'none', color: 'white'}}>
 					<Paper>
@@ -45,30 +51,43 @@ class Home extends Component {
 				) 
 		})
 	}
-
+	imageLoaded(){
+		this.setState({numberOfImagesLoaded : this.state.numberOfImagesLoaded+1});
+		console.log(this.state.numberOfImagesLoaded);
+	}
 
 	componentWillMount(){
 		// let bar = this.getPosts(Resp).then(()=>console.log(bar))
+		console.log(this.props.dataReady)
+	}
+	displayBigStoryLoader(){
+		return (this.state.numberOfImagesLoaded >=4)? '': 
+			<BigStoryLoader/>
+
 	}
 	render(){
-		return(
-			<div className="container">
-				 <div className="home-header">
-				 {this.renderPosts()}
-				 </div>
-
+		// console.log(this.state.numberOfImagesLoaded)
+		return (
+			<div>
+				<div className="container">
+					 <div className="home-header">
+					 {this.renderPosts()}
+					 </div>
+				</div>
+				{this.displayBigStoryLoader()}
 			</div>
 		)
+	
 	}
 }
 
 export default createContainer(()=>{
 	let handle = Meteor.subscribe('posts')
 	if(handle.ready()){
-		let bob = Posts.find({slug: 'running-wild'}).fetch()
-		console.log(bob)
+		
 	}
 	return {
-		posts: Posts.find({}, {limit: 6}).fetch()
+		posts: Posts.find({}, {limit: 6}).fetch(),
+		dataReady: true
 	}
 },Home)

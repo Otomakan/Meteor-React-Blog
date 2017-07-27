@@ -308,16 +308,16 @@ nav {
 	z-index:-100000000;
 }
 .fruits-svg.elem1 {
-	animation: fruitanim1 35s infinite;
+	animation: fruitanim1 25s infinite linear;
 }
 .fruits-svg.elem2 {
-	animation: fruitanim2 35s infinite;
+	animation: fruitanim2 25s infinite linear;
 }
 .fruits-svg.elem3 {
-	animation: fruitanim3 35s infinite;
+	animation: fruitanim3 25s infinite linear;
 }
 .fruits-svg.elem4 {
-	animation: fruitanim1 35s infinite;
+	animation: fruitanim1 25s infinite linear;
 }
 @keyframes fruitanim1{
 	0%{top: (0); left: (0) }
@@ -325,8 +325,8 @@ nav {
 }
 
 @keyframes fruitanim2{
-	0%{top: -10vh; left: 80vw }
-	100%{top:110vh;  left:15vw}
+	0%{top: 110vh; left: 80vw }
+	100%{top:10vh;  left:15vw}
 }
 @keyframes fruitanim3{
 	0%{left: 75vw; top: -15vh}
@@ -337,3 +337,59 @@ nav {
 	100%{left: 100vw;  top: 100vh}
 }
 /*SOURCE OF THE RANDOM ANIMATION: https://codepen.io/maysi/pen/mPKmVB*/
+/* Big Story Loader animation */
+
+.big-story-loader{
+	height:100vh;
+	width:100vw;
+	position:fixed;
+	z-index: 10000000;
+	top:0;
+
+  background-color: #42e2f4;
+	left:0;
+}
+#bunny-container{
+  position:absolute;
+  top:40vh;
+  left:10vw;
+  transition: transform  0.7s, left 3.6s ease-in-out;
+  animation: jump infinite 3.6s ease-in-out;
+}
+@keyframes jump{
+  0%{top:40vh}
+  50%{top: 60vh}
+  100%{top:40vh}
+}
+
+#fat-bibi{
+  height:100px;
+  stroke-width: 5px;
+}
+body{
+  color: white;
+}
+
+#first-fruit{
+  height:100px;
+  stroke-color:white;
+  position:absolute;
+ top : 40vh;
+  left:30vw;
+}
+
+#pineapple{
+  height:100px;
+  position:absolute;
+ top : 40vh;
+  left:50vw;
+}
+
+#marmelade{
+  height:100px;
+  position:absolute;
+  top : 40vh;
+  left:70vw;
+}
+/*End Big story animation*/
+

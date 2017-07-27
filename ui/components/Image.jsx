@@ -12,6 +12,9 @@ export default class Image extends Component {
 
   onImageLoaded() {
       this.setState({ imageStatus: 'image image-loaded' });
+      if(this.props.imageLoaded){
+        this.props.imageLoaded()
+      }
   }
   onImageError(){
     return
