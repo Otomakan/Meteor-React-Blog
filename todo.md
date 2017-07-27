@@ -70,6 +70,7 @@ Also create a version which is completely headless.
 
 Int the IMage conponent you have to add the alts. 
 
+<<<<<<< HEAD
 It needs to become SEO friendly!
 	[]Use the post tags and display them
 	[] Create tag links, you click on them and have access to a page with all posts with same tags
@@ -84,3 +85,6 @@ Google recommendations:
 
 
  Its is fucking slow on mobile!!
+=======
+For the service workers see the implementation of create-react-app
+>>>>>>> aee74ed06680168afc2dd33fa9e3fe9afa1a7286
