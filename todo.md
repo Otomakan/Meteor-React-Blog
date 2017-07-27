@@ -69,3 +69,18 @@ Later maybe create a version with yeoman to adapt to your headless cms.
 Also create a version which is completely headless. 
 
 Int the IMage conponent you have to add the alts. 
+
+It needs to become SEO friendly!
+	[]Use the post tags and display them
+	[] Create tag links, you click on them and have access to a page with all posts with same tags
+	[] Make good use of title-tag https://moz.com/learn/seo/title-tag
+
+Google recommendations:
+	[]Build service workers
+	[] Make it mobile friendly!
+	[] HTTPS//HTTP2
+	[] Fallback if no JS
+	[] Add meta viewport
+
+
+ Its is fucking slow on mobile!!
