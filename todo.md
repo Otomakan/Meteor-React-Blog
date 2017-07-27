@@ -69,3 +69,5 @@ Later maybe create a version with yeoman to adapt to your headless cms.
 Also create a version which is completely headless. 
 
 Int the IMage conponent you have to add the alts. 
+
+For the service workers see the implementation of create-react-app

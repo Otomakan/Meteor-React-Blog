@@ -1,5 +1,4 @@
 
-@import '{}/node_modules/materialize-css/sass/materialize.scss';
 
 @import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Permanent+Marker');
 
@@ -23,7 +22,10 @@ $purple: #E4C1F9;
 body {
     background-color: $beige;
     padding-top: 70px;
-    width:100vw
+    width:100vw;
+    color:black;
+    margin:0;
+    padding:0;
 }
 
 nav {
@@ -34,10 +36,12 @@ nav {
 
 .image {
 	opacity: 0;
-	transition: opacity 1.1s; 
+	transform: scale(0.1);
+	transition: all 1.1s; 
 }
 .image-loaded { 
 	opacity: 1; 
+	transform: scale(1);
 }
 .navbar-header.page-scroll{
 	background-color: $beige;
@@ -115,8 +119,9 @@ nav {
 }
 
 .home-header{
-  height: 650px;
-  width:100%;
+  // justify-content:center;
+  align-items:stretch;
+  height: 28vh*3;
   color:white;
   display: flex;
   flex-wrap: wrap;
@@ -128,11 +133,12 @@ nav {
 .home-left{
 	padding:0;
 	transform: scale(0.99);
-		@include shadow(1);
+	height:28vh;
+	width:28vh;
+	@include shadow(1);
 	// transform: scale(0.96);
 	&:nth-child(1) {
-		height:33.333%;
-		width:25%;
+		
 		background-color:$pink;
 		img{
 	    	border: 2px solid $blue;
@@ -142,24 +148,15 @@ nav {
 	/* two items */
 	&:nth-child(2){
 	  	background:$blue;
-	  	height:33.333%;
-		width:25%;
-			img{
-	    	border: 4px solid $pink;
-			}
 	}
 	&:nth-child(3) {
 		background:$green;
-		width:25%;
-		height:33.334%;
-			img{
-	    	border: 4px solid $blue;
-			}
+		
 	}
 	/* two items */
 	&:nth-child(4){
-	  	height:100%;
-		width:50%;
+	  	height: 28vh *3;
+		width: 28vh *3;
 	  	background:$purple;
 	  		img{
 	    	top:0;
@@ -168,14 +165,9 @@ nav {
 	}
 	&:nth-child(5) {
 		background:$blue;
-		height:35%;
-		width:25%;
 	}
 	&:nth-child(6) {
-		background:$pink;
-		height:65%;
-		width:25%;
-	}
+		background:$pink;	}
 
 	 &:hover,&:focus {
 	  @include shadow(3);
@@ -211,63 +203,51 @@ nav {
 
 @media (min-width:1135px){
 	.home-header{
-		width:100%;
+		max-width:28vh*5;
+		margin:auto;
+		margin-top: 100px;
 	}
 }
 
-@media (max-width:1135px){
-	.home-header{
-		width:100%;
-	}
-}
 @media (max-width:1130px){
 	.home-header{
 		max-width:100%;
 		height:auto;
 		flex-wrap:wrap;
 		flex-direction: row;
-		// flex-wrap: row;
-		// flex-flow:row;
-		// width:400px;
-		// flex-direction: colu
-		// height:auto;
-		}
+	}
 
 	.home-left{
+		height:33.333vw;
+			width:33.33vw;
 		&:nth-child(1) {
-			height:30vh;
-			width:33.333%;
 		}
 
 		/* two items */
 		&:nth-child(2){
 		  	background:$blue;
-		  	height:30vh;
-			width:33.333%;
 		}
 		&:nth-child(3) {
 			background:$green;
-			height:30vh;
-			width:33.333%;
 		}
 
 		/* two items */
 		&:nth-child(4){
-		  	height:60vh;
-			width:100%;
+		  	height: 100vw;
+			width:100vw;
 		  	background:$purple;
 		}
 		&:nth-child(5) {
 			background:$blue;
-			height:45vh;
-			width:100%;
+			height:100vw;
+			width:100vw;
 			display:block;
 			// position:
 		}
 		&:nth-child(6) {
 			background:$pink;
-			height:45vh;
-			width:100%;
+			height:100vw;
+			width:100vw;
 		}
 	}
 }
@@ -284,6 +264,7 @@ nav {
 	display:inline-block;
 	margin: 100px 35vw;
 	background-color: white;
+	color:black;
 	border-radius: 5px;
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 
@@ -311,7 +292,7 @@ nav {
 		box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 	}
 	h1{
-		color: black;
+		color: white;
 		margin:0.2em auto;
 		font-size:2.6em;
 		font-family: 'Permanent Marker', cursive;
@@ -320,3 +301,39 @@ nav {
 }
 
 
+.fruits-svg {
+	height:75px;
+	width: 75px;
+	position:absolute;
+	z-index:-100000000;
+}
+.fruits-svg.elem1 {
+	animation: fruitanim1 35s infinite;
+}
+.fruits-svg.elem2 {
+	animation: fruitanim2 35s infinite;
+}
+.fruits-svg.elem3 {
+	animation: fruitanim3 35s infinite;
+}
+.fruits-svg.elem4 {
+	animation: fruitanim1 35s infinite;
+}
+@keyframes fruitanim1{
+	0%{top: (0); left: (0) }
+	100%{top:(100vh); left: (80vh)}
+}
+
+@keyframes fruitanim2{
+	0%{top: -10vh; left: 80vw }
+	100%{top:110vh;  left:15vw}
+}
+@keyframes fruitanim3{
+	0%{left: 75vw; top: -15vh}
+	100%{left: 35vw;  top: 120vh}
+}
+@keyframes fruitanim4{
+	0%{left: 0; top: 0}
+	100%{left: 100vw;  top: 100vh}
+}
+/*SOURCE OF THE RANDOM ANIMATION: https://codepen.io/maysi/pen/mPKmVB*/

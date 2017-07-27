@@ -6,6 +6,7 @@ import {Route} from 'react-router-dom'
 
 import Navbar from './Navbar.jsx'
 import Home from './home.jsx'
+import Background from '../components/Background.jsx'
 import Repos from './Repos.jsx'
 import About from './About.jsx'
 import BlogPost from './blogpost/blogpost.jsx'
@@ -65,7 +66,7 @@ export default class App extends Component {
 		<div>
 
 			<Navbar brand={navbar.brand} links={navbar.links}/>
-
+			<Background/>
 			<Route path="/about" component={About}/>
 			<Route path="/repos" component={Repos}/>
 			<Route path="/blog/:slug" component={BlogPost}/>
