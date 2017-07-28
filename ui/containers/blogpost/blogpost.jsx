@@ -152,6 +152,8 @@ class BlogPost extends Component {
 	findPrev(ask){
 	
 	}
+
+
 	componentWillUnmount(){
 		console.log('unomounting')
 		this.setState({
@@ -222,7 +224,7 @@ class BlogPost extends Component {
 
 export default BlogPostContainer = createContainer((props)=>{
 	let handle = Meteor.subscribe('posts')
-	let relatedPosts
+	let relatedPosts =null
 	
 	let slugIndex = window.location.href.lastIndexOf("/")+1;
 	let currentSlug = window.location.href.substr(slugIndex)
@@ -234,7 +236,6 @@ export default BlogPostContainer = createContainer((props)=>{
 	}
 	// console.log(Posts.count())
 	let hasnex = Posts.find({'slug':props.match.params.slug})
-	// console.log(relatedPosts)
 	return {
 		dataReady: handle.ready(),
 		blogpost:  doc ? doc : null,
@@ -245,9 +246,9 @@ export default BlogPostContainer = createContainer((props)=>{
 
 function findRelatedPosts(db, tags, numbPostsNeeded, excludeIds){
 	let final =[]
-	 sameTagsPosts= db.find({'tags': tags, _id: {$ne:excludeIds}},{limit:30}).fetch()
-	
+	let sameTagsPosts= Posts.find({'tags': tags, _id: {$ne:excludeIds}},{limit:30}).fetch()
 	//gets a random 
+	console.log(sameTagsPosts)
 	let exception=[-1]
 	for(let x=0; x<numbPostsNeeded; x++){
 		let tagNum = getRandomIntExpt(sameTagsPosts.length, exception)

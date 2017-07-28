@@ -71,17 +71,11 @@ export default class BigStoryLoader extends Component {
     window.clearInterval(this.interval);
   }
   render(){
-    return(<div className="big-story-loader">
-        <div id='bunny-container' style={{left: this.state.leftpos+'vw',
-           transform:'scale('+ this.state.scale+')'}}>
-          <FatBunny />
-        </div>
-        {this.donut()}
-        {this.pineapple()}
-        {this.marmelade()}
-        
-        </div>
-    )
+    return (this.props.display) ? <div className="big-story-loader" style={{ opacity:this.props.loaderOpacity}}>  <div id='bunny-container' style={{left: this.state.leftpos+'vw',
+           transform:'scale('+ this.state.scale+')'}}> <FatBunny /> </div>
+        {this.donut()}        {this.pineapple()}        {this.marmelade()}    
+        </div> : null
+    
   }  
 }
 

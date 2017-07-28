@@ -21,7 +21,14 @@ class Home extends Component {
 		super(props)
 		this.state={
 			numberOfImagesLoaded :0,
+			displayLoader: true,
+			loaderOpacity:1,
 		}
+	}
+	renderRightSize(index,blog){
+		console.log(index)
+		return (index===3) ? <Image src={blog.featuredImage.fields.file.url+'?fit=thumb&f=top_left&h=1000&w=1000'}/>:
+		<Image src={blog.featuredImage.fields.file.url+'?fit=thumb&f=top_left&h=400&w=400'}/>
 	}
 	renderPosts(){
 		let blogs = this.props.posts;
@@ -43,27 +50,42 @@ class Home extends Component {
 					state: content}}  
 				style={{textDecoration: 'none', color: 'white'}}>
 					<Paper>
-
-					<Image src={blog.featuredImage.fields.file.url}/>
+					{this.renderRightSize(index,blog)}
 					 <h1>{blog.title}</h1>
+					
 					</Paper>
 				</Link>
 				) 
 		})
 	}
 	imageLoaded(){
-		this.setState({numberOfImagesLoaded : this.state.numberOfImagesLoaded+1});
-		console.log(this.state.numberOfImagesLoaded);
+		// this.setState({numberOfImagesLoaded : this.state.numberOfImagesLoaded+1});
+		this.state.numberOfImagesLoaded +=1;
+		// console.log(this.state.numberOfImagesLoaded);
+
+		if(this.state.numberOfImagesLoaded===5){
+			this.setState({loaderOpacity:0})
+			setTimeout(()=>{this.setState({displayLoader:false})},3000)
+		}
+		// console.log(this.state.loaderOpacity)
+
+		
 	}
 
 	componentWillMount(){
+	
 		// let bar = this.getPosts(Resp).then(()=>console.log(bar))
-		console.log(this.props.dataReady)
 	}
+	// The loader will disappear whern the function imageLoaded gets called 4 times;
 	displayBigStoryLoader(){
-		return (this.state.numberOfImagesLoaded >=4)? '': 
-			<BigStoryLoader/>
-
+		setTimeOut(()=>{
+		if (this.state.numberOfImagesLoaded >=4){
+			return
+		}
+	},4000)
+	
+		if (this.state.numberOfImagesLoaded <7)
+			return 
 	}
 	render(){
 		// console.log(this.state.numberOfImagesLoaded)
@@ -74,7 +96,10 @@ class Home extends Component {
 					 {this.renderPosts()}
 					 </div>
 				</div>
-				{this.displayBigStoryLoader()}
+				<div>
+				<BigStoryLoader display={this.state.displayLoader} loaderOpacity={this.state.loaderOpacity}/>
+				</div>
+
 			</div>
 		)
 	

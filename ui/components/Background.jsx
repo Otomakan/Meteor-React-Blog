@@ -17,8 +17,7 @@ poof(event){
 }
 
   render() {
- 
-    return (
+    return (this.props.display)?
       <div >
       <svg className="fruits-svg elem1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px"
    viewBox="0 0 57.21 57.21">
@@ -162,7 +161,8 @@ poof(event){
     <circle style={{fill:"#231F20"}} cx="37.282" cy="21.372" r="1.5"/>
   </g>
       </svg>
-      </div>
-    );
+      </div> 
+      : null
+    
   }
 };

@@ -24,14 +24,14 @@ const client = contentful.createClient({
 
 
 Meteor.startup(() => {
-	// Meteor.call('remove-all')
-	// client.getEntries({content_type: '2wKn6yEnZewu2SCCkus4as'})
-	// .then((res)=> res.items.map((entry, index)=> {
-	// 	//Delete created entriea because it creates a maximum stack call problem
-	// 	delete entry.fields.author[0].fields.createdEntries
+	Meteor.call('remove-all')
+	client.getEntries({content_type: '2wKn6yEnZewu2SCCkus4as'})
+	.then((res)=> res.items.map((entry, index)=> {
+		//Delete created entriea because it creates a maximum stack call problem
+		delete entry.fields.author[0].fields.createdEntries
 		
-	// 	Meteor.call('add-entry', entry)}))
-	// .catch((err)=> console.log(err))
+		Meteor.call('add-entry', entry)}))
+	.catch((err)=> console.log(err))
 	// console.log(ContentfulList)
 	// ContentfulList.then((res)=> console.log('resole'))
 });

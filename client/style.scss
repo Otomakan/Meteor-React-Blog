@@ -211,6 +211,8 @@ nav {
 
 @media (max-width:1130px){
 	.home-header{
+
+		margin-top: 100px;
 		max-width:100%;
 		height:auto;
 		flex-wrap:wrap;
@@ -261,42 +263,29 @@ nav {
 .blog-image {
 	width: 40vw;
 	height: 40vw;
+	max-width: 40vw;
+	max-height: 40vw;
 	display:inline-block;
 	margin: 100px 35vw;
 	background-color: white;
 	color:black;
 	border-radius: 5px;
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-
 	text-align:center;
-
-	// vertical-align:middle;
-}
-@function stroke($stroke, $color) {
-  $shadow: ();
-  $from: $stroke*-1;
-  @for $i from $from through $stroke {
-   @for $j from $from through $stroke {
-      $shadow: append($shadow, $i*1px $j*1px 0 $color, comma);
-    }
-  }
-  @return $shadow;
-}
-
-.blog-image{
-	img{
-		height:76%;
-		display:block;
-		// border-radius: 5px;
-		margin: 5% auto;
-		box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-	}
-	h1{
-		color: white;
-		margin:0.2em auto;
-		font-size:2.6em;
-		font-family: 'Permanent Marker', cursive;
-	}
+		img{
+			height:76%;
+			display:block;
+			max-height: 40vh;
+			max-width: 40vw;
+			margin: 5% auto;
+			box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+		}
+		h1{
+			color: black;
+			margin:0.2em auto;
+			font-size:2.6em;
+			font-family: 'Permanent Marker', cursive;
+		}
 
 }
 
@@ -345,7 +334,7 @@ nav {
 	position:fixed;
 	z-index: 10000000;
 	top:0;
-
+	transition: opacity 3s;
   background-color: #42e2f4;
 	left:0;
 }
@@ -365,9 +354,6 @@ nav {
 #fat-bibi{
   height:100px;
   stroke-width: 5px;
-}
-body{
-  color: white;
 }
 
 #first-fruit{
