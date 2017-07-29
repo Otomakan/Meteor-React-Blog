@@ -17,7 +17,7 @@ poof(event){
 }
 
   render() {
-    return (this.props.display)?
+    return (
       <div >
       <svg className="fruits-svg elem1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px"
    viewBox="0 0 57.21 57.21">
@@ -162,7 +162,7 @@ poof(event){
   </g>
       </svg>
       </div> 
-      : null
+      )
     
   }
 };

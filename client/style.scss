@@ -21,11 +21,10 @@ $purple: #E4C1F9;
 
 body {
     background-color: $beige;
-    padding-top: 70px;
+    padding-top: 100px;
     width:100vw;
     color:black;
     margin:0;
-    padding:0;
 }
 
 nav {
@@ -205,14 +204,11 @@ nav {
 	.home-header{
 		max-width:28vh*5;
 		margin:auto;
-		margin-top: 100px;
 	}
 }
 
 @media (max-width:1130px){
 	.home-header{
-
-		margin-top: 100px;
 		max-width:100%;
 		height:auto;
 		flex-wrap:wrap;
@@ -297,29 +293,29 @@ nav {
 	z-index:-100000000;
 }
 .fruits-svg.elem1 {
-	animation: fruitanim1 25s infinite linear;
+	animation: fruitanim1 15s infinite linear;
 }
 .fruits-svg.elem2 {
-	animation: fruitanim2 25s infinite linear;
+	animation: fruitanim2 15s infinite linear;
 }
 .fruits-svg.elem3 {
-	animation: fruitanim3 25s infinite linear;
+	animation: fruitanim3 15s infinite linear;
 }
 .fruits-svg.elem4 {
-	animation: fruitanim1 25s infinite linear;
+	animation: fruitanim1 15s infinite linear;
 }
 @keyframes fruitanim1{
 	0%{top: (0); left: (0) }
-	100%{top:(100vh); left: (80vh)}
+	100%{top:(100vh); left: (20vh)}
 }
 
 @keyframes fruitanim2{
 	0%{top: 110vh; left: 80vw }
-	100%{top:10vh;  left:15vw}
+	100%{top:10vh;  left:100vw}
 }
 @keyframes fruitanim3{
-	0%{left: 75vw; top: -15vh}
-	100%{left: 35vw;  top: 120vh}
+	0%{left: 0vw; top: 55vh}
+	100%{left: 105vw;  top: 65vh}
 }
 @keyframes fruitanim4{
 	0%{left: 0; top: 0}

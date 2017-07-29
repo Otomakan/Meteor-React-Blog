@@ -26,7 +26,6 @@ class Home extends Component {
 		}
 	}
 	renderRightSize(index,blog){
-		console.log(index)
 		return (index===3) ? <Image src={blog.featuredImage.fields.file.url+'?fit=thumb&f=top_left&h=1000&w=1000'}/>:
 		<Image src={blog.featuredImage.fields.file.url+'?fit=thumb&f=top_left&h=400&w=400'}/>
 	}

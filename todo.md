@@ -88,3 +88,10 @@ For the service workers see the implementation of create-react-app
 []Find a way to Improve the display and disappearance of the bigStory Loader when all images are loaded
 
 [] reorganize blogpost to sepearte the logics
+
+[] Still have to cache the next post picturem maybe if the picture isn't loaded also have something to prefill.
+[] When a link is clicked on mobile make sure there is some sort of splash animation
+
+[] Reverse the fetch chronological order at home page oso the latest posts appear first. 
+
+[] Create a twitter/instagram bot which posts  the title and hashtags of new post

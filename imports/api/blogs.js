@@ -17,19 +17,23 @@ if (Meteor.isServer) {
 
 Meteor.methods({
 	'add-entry'(object){
+		console.log('adding entry')
 		// See if the database is empty
-		// if(Posts.find({}).fetch().length === 0 && object !== undefined){
-		// 	console.log('First database initialisation')
+		if(Posts.find({}).fetch().length === 0 && object !== undefined){
+			console.log('First database initialisation')
 			Posts.insert(object.fields)
+		}
 		// }
 		// // if not see if the post already exists in the database
-		// else if(Posts.find({"title": object.title}).fetch().length>0){
-		// 	return
-		// }
-		// else{
-		// 	console.log("Inserting Post: "+object.title)
-		// 	Posts.insert(object)
-		// }
+
+		else if(Posts.find({"title": object.fields.title}).fetch().length >0){
+			console.log(object.sys.id)
+			return
+		}
+		else{
+			console.log("Inserting Post: "+object.fields.title)
+			Posts.insert(object.fields)
+		}
 
 	},
 

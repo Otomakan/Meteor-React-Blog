@@ -1,11 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import '../imports/api/blogs.js'
-
+import '../imports/api/public/webhooks.js'
 //Should I leave Butterlist.then in the startup function 
 //or should I keeap it as an import 
 // import '../imports/api/server/fetchblog.js'
-
-// import ContentfulList from '../imports/api/server/fetchblog.js'
 'use strict'
 
 const contentful = require('contentful')
@@ -24,16 +22,21 @@ const client = contentful.createClient({
 
 
 Meteor.startup(() => {
-	Meteor.call('remove-all')
-	client.getEntries({content_type: '2wKn6yEnZewu2SCCkus4as'})
-	.then((res)=> res.items.map((entry, index)=> {
-		//Delete created entriea because it creates a maximum stack call problem
-		delete entry.fields.author[0].fields.createdEntries
-		
-		Meteor.call('add-entry', entry)}))
-	.catch((err)=> console.log(err))
-	// console.log(ContentfulList)
-	// ContentfulList.then((res)=> console.log('resole'))
+	// Meteor.call('remove-all')
+	// let blob=0
+	// // This content type is posts so that only posts get added to the db
+	// client.getEntries({content_type: '2wKn6yEnZewu2SCCkus4as'})
+	// .then((res)=> {
+	// 	res.items.map((entry, index)=> {
+	// 		if(blob===0)
+	// 			console.log(entry)
+	// 		blob+=1;
+	// 		//Delete created entriea because it creates a maximum stack call problem
+	// 		delete entry.fields.author[0].fields.createdEntries
+			
+	// 		Meteor.call('add-entry', entry)})
+	// })
+	// .catch((err)=> console.log(err))
 });
 
 Meteor.setInterval(()=>{
