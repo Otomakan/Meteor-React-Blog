@@ -69,10 +69,11 @@ class BlogPost extends Component {
 			this.displayPreviousProps(props.location.state)
 		//if it is a direct link go use the db data
 		else
-			this.displayFetchedPost(props.blogpost[0])
+			this.displayFetchedPost(props.blogpost[0].fields)
 
 		//Load future posts Maybe put that later in the app.
-			this.nextPostSlug(props.relatedPosts[0])
+
+			this.nextPostSlug(props.relatedPosts[0].fields)
 
 		// console.log(props.match)
 		// console.log(props.match.params.slug+ ' : ' + this.state.slug)
@@ -163,7 +164,7 @@ class BlogPost extends Component {
 
 	nextPost(){
 		// console.log(this.props.relatedPosts)
-		let blog = this.props.relatedPosts[0]
+		let blog = this.props.relatedPosts[0].fields
 		// console.log(this.props.location.state.title)
 		return 	 {
 				title: blog.title,
@@ -229,9 +230,11 @@ export default BlogPostContainer = createContainer((props)=>{
 	let slugIndex = window.location.href.lastIndexOf("/")+1;
 	let currentSlug = window.location.href.substr(slugIndex)
 	
-	let doc = Posts.find({slug: currentSlug || props.match.params.slug||props.location.state.slug}).fetch()
+	let doc = Posts.find({"fields.slug": currentSlug || props.match.params.slug||props.location.state.slug}).fetch()
 	// .fetch()
-	if(handle.ready() && doc[0] && doc[0].tags){
+	console.log(doc)
+	if(handle.ready() && doc[0] && doc[0].fields.tags){
+		console.log('read')
 		relatedPosts = findRelatedPosts(Posts, 'food', 1, doc[0]._id)
 	}
 	// console.log(Posts.count())
@@ -246,7 +249,7 @@ export default BlogPostContainer = createContainer((props)=>{
 
 function findRelatedPosts(db, tags, numbPostsNeeded, excludeIds){
 	let final =[]
-	let sameTagsPosts= Posts.find({'tags': tags, _id: {$ne:excludeIds}},{limit:30}).fetch()
+	let sameTagsPosts= Posts.find({"fields.tags": tags, _id: {$ne:excludeIds}},{limit:30}).fetch()
 	//gets a random 
 	console.log(sameTagsPosts)
 	let exception=[-1]

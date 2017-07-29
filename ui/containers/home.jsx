@@ -32,8 +32,10 @@ class Home extends Component {
 	renderPosts(){
 		let blogs = this.props.posts;
 		// Map of the 6 latest blog postsloaded in Apps jsx only way to do it otherwise you get an empty array at first shot and everything shuts down
+		if(blogs){
 		return blogs.map((blog, index)=>{
-			var linkTo = "blog/"+ blog.slug
+			var linkTo = "blog/"+ blog.fields.slug
+			blog=blog.fields
 			let content = {
 				title: blog.title,
 				image: blog.featuredImage.fields.file.url||'no-image',
@@ -57,6 +59,7 @@ class Home extends Component {
 				) 
 		})
 	}
+}
 	imageLoaded(){
 		// this.setState({numberOfImagesLoaded : this.state.numberOfImagesLoaded+1});
 		this.state.numberOfImagesLoaded +=1;

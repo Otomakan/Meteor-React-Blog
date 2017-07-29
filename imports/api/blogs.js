@@ -21,7 +21,7 @@ Meteor.methods({
 		// See if the database is empty
 		if(Posts.find({}).fetch().length === 0 && object !== undefined){
 			console.log('First database initialisation')
-			Posts.insert(object.fields)
+			Posts.insert(object)
 		}
 		// }
 		// // if not see if the post already exists in the database
@@ -32,13 +32,21 @@ Meteor.methods({
 		}
 		else{
 			console.log("Inserting Post: "+object.fields.title)
-			Posts.insert(object.fields)
+			Posts.insert(object)
 		}
 
 	},
 
 	'remove-all'(){
 		Posts.remove({})
+	},
+	'remove-entry'(title){
+		try{
+		Posts.remove({"title": title})
+		}
+		catch(e){
+			console.log('couldnot remove the entry')
+		}
 	}
 })
 
