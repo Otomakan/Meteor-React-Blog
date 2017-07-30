@@ -1,22 +1,9 @@
 import BodyParser from 'body-parser'
 import {Picker} from 'meteor/meteorhacks:picker'
 import ContentfulServer from 'contentful-webhook-server'
-import bodyParse from'body-parser'
 import { Meteor } from 'meteor/meteor';
-// server = ContentfulServer({
-// 	path: '/bob',
-// 	username: 'bob',
-// 	password: 'mark'
-// })
+import {Publish} from './contentfulRequestType/publish.js'
 
-
-// server.on('ContentManagement.*', function(req){
-//   console.log('A content type was published!');
-// });
-
-// server.listen(3010, function(){
-//   console.log('Contentful webhook server running on port ' + 3010)
-// });
 
 const contentful = require('contentful')
 
@@ -40,39 +27,14 @@ Picker.route('/api/webhooks', (params, request, response) =>{
 		console.log('contentful webhook coming in')
 		console.log(request.body)
 		if(request.headers['x-contentful-topic']==='ContentManagement.Entry.publish'){
-			// We have to use getEntry because the webhooks doesnt send detailed body information
-			client.getEntry(request.body.sys.id).then(
-				// Fore Some reason I cant resolve links from contetnful so I have to do an extra query to get image and author names client.getEntries({'sys.id': request.body.sys.id}, 'include':10).then((res)=>console.log(res.items[0].fields.author.fields.name)
+			// We have to use a special Publish function because the webhooks doesnt send detailed body information, to so we fetch the Links that are given by the webhook and build the object to be added to our database
+			Publish(request.body.sys.id,client)
 
-				(res)=> {
-
-				console.log(res.fields.author)
-				let newPost = res
-
-				let insertFeaturedImage = client.getAsset(res.fields.featuredImage.sys.id)
-				.then((featuredImage)=> {newPost.fields.featuredImage=featuredImage})
-				.catch(()=> console.log('there was an error fetching the image'))
-				
-				let insertAuthor = client.getEntry(res.fields.author[0].sys.id)
-				.then((author)=>{newPost.fields.author = [author]})
-				.catch(()=>console.log('there was an error fetching the author'))
-
-				Promise.all([insertFeaturedImage, insertAuthor]).then((entries)=>{
-					console.log('Adding New Entry')
-					Meteor.call('add-entry', newPost)
-					console.log('added')
-			
-				})
-			
-			}
-		)
-		.catch((err)=> console.log(error))
 	}
 
-	else if(request.headers['x-contentful-topic']==='ContentManagement.Entry.delete'){
-		console.log(request.body)
-
-
+	else if(request.headers['x-contentful-topic']==='ContentManagement.Entry.delete' || 'ContentManagement.Entry.unpublish' ){
+		console.log('deleting')
+		Meteor.call('remove-entry', request.body.sys.id)
 	}
 
 	else
@@ -87,6 +49,6 @@ Picker.route('/api/webhooks', (params, request, response) =>{
 		console.log('Unknow request')
 		response.setHeader( 'Content-Type', 'application/json' );
  		response.statusCode = 403;
-  		response.end( 'You are not authorized to send us a webhook my friend' );
+  		response.end( 'You are not authorized to send us a webhook my friend' )
 	}
 })

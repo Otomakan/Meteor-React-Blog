@@ -26,6 +26,23 @@ body {
     color:black;
     margin:0;
 }
+p{
+	display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+     --x-height-multiplier: 0.35;
+    --baseline-multiplier: 0.179;
+    font-family: medium-content-serif-font,Georgia,Cambria,"Times New Roman",Times,serif;
+    letter-spacing: .01rem;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 21px;
+    line-height: 1.58;
+    letter-spacing: -.003em;
+    margin-top: 29px;
+}
 
 nav {
 	.navbar .navbar-default .navbar-custom .navbar-fixed-top{
@@ -285,12 +302,28 @@ nav {
 
 }
 
+.nextPostLoader{
+	position:fixed;
+	top:35vh;
+	left:0;
+	height:600px;
+	width:200px;
+	background-color:$pink;
+	img{
+		height:200px;
 
+	}
+
+}
+
+/*Background*/
 .fruits-svg {
 	height:75px;
 	width: 75px;
 	position:absolute;
 	z-index:-100000000;
+	overflow:none;
+	display:inline-block;
 }
 .fruits-svg.elem1 {
 	animation: fruitanim1 15s infinite linear;
@@ -306,20 +339,24 @@ nav {
 }
 @keyframes fruitanim1{
 	0%{top: (0); left: (0) }
-	100%{top:(100vh); left: (20vh)}
+	99%{opacity:1}
+	100%{top:(100vh); left:20vh; opacity:0}
 }
 
 @keyframes fruitanim2{
-	0%{top: 110vh; left: 80vw }
-	100%{top:10vh;  left:100vw}
+	0%{top: 100vh; left: 80vw }
+	99%{opacity:1}
+	100%{top:10vh;  left:100vw; opacity:0}
 }
 @keyframes fruitanim3{
 	0%{left: 0vw; top: 55vh}
-	100%{left: 105vw;  top: 65vh}
+	99%{opacity:1}
+	100%{left: 100vw;  top: 65vh; opacity:0}
 }
 @keyframes fruitanim4{
 	0%{left: 0; top: 0}
-	100%{left: 100vw;  top: 100vh}
+	99%{opacity:1}
+	100%{left: 100vw;  top: 100vh; opacity:0}
 }
 /*SOURCE OF THE RANDOM ANIMATION: https://codepen.io/maysi/pen/mPKmVB*/
 /* Big Story Loader animation */
@@ -330,7 +367,7 @@ nav {
 	position:fixed;
 	z-index: 10000000;
 	top:0;
-	transition: opacity 3s;
+	transition: all 1s ease-out;
   background-color: #42e2f4;
 	left:0;
 }

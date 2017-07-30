@@ -26,14 +26,14 @@ class Home extends Component {
 		}
 	}
 	renderRightSize(index,blog){
-		return (index===3) ? <Image src={blog.featuredImage.fields.file.url+'?fit=thumb&f=top_left&h=1000&w=1000'}/>:
-		<Image src={blog.featuredImage.fields.file.url+'?fit=thumb&f=top_left&h=400&w=400'}/>
+		return (index===3) ? <Image src={blog.featuredImage.fields.file.url} height='1000' width='1000'/>:
+		<Image src={blog.featuredImage.fields.file.url} height='400' width='400'/>
 	}
 	renderPosts(){
 		let blogs = this.props.posts;
 		// Map of the 6 latest blog postsloaded in Apps jsx only way to do it otherwise you get an empty array at first shot and everything shuts down
 		if(blogs){
-		return blogs.map((blog, index)=>{
+		let blogmap = blogs.map((blog, index)=>{
 			var linkTo = "blog/"+ blog.fields.slug
 			blog=blog.fields
 			let content = {
@@ -58,34 +58,25 @@ class Home extends Component {
 				</Link>
 				) 
 		})
+		console.log(blogmap)
+		return blogmap
 	}
 }
 	imageLoaded(){
-		// this.setState({numberOfImagesLoaded : this.state.numberOfImagesLoaded+1});
 		this.state.numberOfImagesLoaded +=1;
-		// console.log(this.state.numberOfImagesLoaded);
-
 		if(this.state.numberOfImagesLoaded===5){
 			this.setState({loaderOpacity:0})
-			setTimeout(()=>{this.setState({displayLoader:false})},3000)
-		}
-		// console.log(this.state.loaderOpacity)
-
-		
+			setTimeout(()=>{this.setState({displayLoader:false})},800)
+		}		
 	}
 
-	componentWillMount(){
-	
-		// let bar = this.getPosts(Resp).then(()=>console.log(bar))
-	}
-	// The loader will disappear whern the function imageLoaded gets called 4 times;
 	displayBigStoryLoader(){
 		setTimeOut(()=>{
-		if (this.state.numberOfImagesLoaded >=4){
-			return
-		}
-	},4000)
-	
+			if (this.state.numberOfImagesLoaded >=4){
+				return
+			}
+		},4000)
+
 		if (this.state.numberOfImagesLoaded <7)
 			return 
 	}

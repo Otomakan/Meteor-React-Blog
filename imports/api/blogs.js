@@ -17,7 +17,6 @@ if (Meteor.isServer) {
 
 Meteor.methods({
 	'add-entry'(object){
-		console.log('adding entry')
 		// See if the database is empty
 		if(Posts.find({}).fetch().length === 0 && object !== undefined){
 			console.log('First database initialisation')
@@ -26,8 +25,8 @@ Meteor.methods({
 		// }
 		// // if not see if the post already exists in the database
 
-		else if(Posts.find({"title": object.fields.title}).fetch().length >0){
-			console.log(object.sys.id)
+		else if(Posts.find({"fields.title": object.fields.title}).fetch().length >0){
+			console.log('You already made a post with the same slug')
 			return
 		}
 		else{
@@ -40,9 +39,9 @@ Meteor.methods({
 	'remove-all'(){
 		Posts.remove({})
 	},
-	'remove-entry'(title){
+	'remove-entry'(id){
 		try{
-		Posts.remove({"title": title})
+		Posts.remove({"sys.id": id})
 		}
 		catch(e){
 			console.log('couldnot remove the entry')

@@ -95,3 +95,9 @@ For the service workers see the implementation of create-react-app
 [] Reverse the fetch chronological order at home page oso the latest posts appear first. 
 
 [] Create a twitter/instagram bot which posts  the title and hashtags of new post
+
+[] when you unpublish something make sure the people who read wont experience trouble
+[] For the mobile version query smaller images.
+[] Make sure that the animation runs before anything is loaded especially on mobile.
+
+[] there is a weird bug, where the picture seems loaded but I can't click it immediately

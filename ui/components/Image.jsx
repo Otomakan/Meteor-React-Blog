@@ -20,11 +20,9 @@ export default class Image extends Component {
     return
   }
 
-
-  render() {
- 
+  render() { 
     return (
-      <img ref="img" alt="no-alt-yet" src={this.props.src} className={this.state.imageStatus} onLoad={this.onImageLoaded.bind(this)} onError={this.onImageError}/>
+      <img ref="img" alt="no-alt-yet" src={this.props.src+'  ?fit=thumb&f=top_left&h='+this.props.height+'&w='+this.props.width} className={this.state.imageStatus} onLoad={this.onImageLoaded.bind(this)} onError={this.onImageError}/>
     );
   }
 };

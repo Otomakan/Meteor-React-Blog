@@ -8,7 +8,7 @@ export default class Content extends Component{
 		return(
 			<div>
 				<div className="blog-image">
-						<Image src={this.props.post.image + '?fit=thumb&f=top_left&h=400&w=400'}/>
+						<Image src={this.props.post.image} height="400" width="400"/>
 					<h1>{this.props.post.title}</h1>
 				</div>
 					<h2> {this.props.summary}</h2>
