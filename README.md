@@ -1,4 +1,10 @@
-This is an example of a blog I built for my little sister using Meteor, React and a headless CMS. I want to make this an easy to setup boilerplate. 
+#Meteor React Blog
+
+This is an example of a blog I built for my little sister using Meteor, React and a headless CMS (Curerently Contentful, but also one ButterCMS branch). I want to make this an easy to setup boilerplate. 
+
+You can find a demo at meteoreactblog.herokuapp.com
+
+##TL;DR
 
 The reason for building it this way is that I wanted to build a blog in React but didn't really like working with the current Node CMSs. So I decided to use a headless CMS I started with ButterCMS then used contentful because I can get more free content. Now the problem is that I want to stay in free tier as long as possible which wont be option if there is a request made to headless CMS every time a user logs in (especially that the app is made in such a way that every page requires to load about 6 posts). 
 
@@ -10,4 +16,5 @@ Even if intial loading can be a bit slow, thanks to React and the general archit
 
 To try out the webhook localy run ./ngrok http 3000 in your project folder then copy the server address and use it to build your webhook in the contentful folder. 
 
-<Image> Component takes 3 props : src which is the contentful url, height and width. This will make a query to the Contentful server to return the exact image size you need. 
+<Image> Components takes 3 props : src which is the contentful url, height and width. This will make a query to the Contentful server to return the exact image size you need. Like this you can always have optimized images!
+

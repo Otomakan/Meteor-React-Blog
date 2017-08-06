@@ -1,6 +1,5 @@
 import BodyParser from 'body-parser'
 import {Picker} from 'meteor/meteorhacks:picker'
-import ContentfulServer from 'contentful-webhook-server'
 import { Meteor } from 'meteor/meteor';
 import {Publish} from './contentfulRequestType/publish.js'
 

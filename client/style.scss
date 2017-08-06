@@ -267,12 +267,30 @@ nav {
 	}
 }
 
-// blog Post Styling
-// .blog-image{
-// 	margin:auto;
-// 	width:100vw;
-// 	display:block;
-// }
+
+/*Dealing With Images*/
+.image-container{
+	height:auto;
+	width:auto;
+	.svg-bar{
+		height:100px;
+		display:block;
+		position:absolute;
+		bottom:0;
+		background-color:rgba(163, 168, 175, 0.5);
+		width:100%;
+		z-index:2;
+		opacity: 0;
+	
+		svg{
+			height:60%;
+			float:right;
+			margin:10px 10px 0 10px;
+		}
+	}
+}
+
+/* BlogPost Page*/
 .blog-image {
 	width: 40vw;
 	height: 40vw;
@@ -302,9 +320,25 @@ nav {
 
 }
 
+
+
+.content{
+
+}
+
+.section{
+	display:block;
+	position:relative;
+	max-width: 740px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin:0 auto;
+
+}
+
 .nextPostLoader{
 	position:fixed;
-	top:35vh;
+	top:30vh;
 	left:0;
 	height:600px;
 	width:200px;

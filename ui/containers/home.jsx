@@ -33,7 +33,7 @@ class Home extends Component {
 		let blogs = this.props.posts;
 		// Map of the 6 latest blog postsloaded in Apps jsx only way to do it otherwise you get an empty array at first shot and everything shuts down
 		if(blogs){
-		let blogmap = blogs.map((blog, index)=>{
+		return blogs.map((blog, index)=>{
 			var linkTo = "blog/"+ blog.fields.slug
 			blog=blog.fields
 			let content = {
@@ -58,8 +58,6 @@ class Home extends Component {
 				</Link>
 				) 
 		})
-		console.log(blogmap)
-		return blogmap
 	}
 }
 	imageLoaded(){
@@ -89,9 +87,7 @@ class Home extends Component {
 					 {this.renderPosts()}
 					 </div>
 				</div>
-				<div>
-				<BigStoryLoader display={this.state.displayLoader} loaderOpacity={this.state.loaderOpacity}/>
-				</div>
+			
 
 			</div>
 		)

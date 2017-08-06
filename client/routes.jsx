@@ -16,7 +16,8 @@ import { Posts } from '../imports/api/blogs.js'
 
 import { createContainer } from 'react-meteor-data'
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import BigStoryLoader from '../ui/components/BigStoryLoader'
 
 
 
@@ -34,13 +35,17 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 	componentDidMount(){
 		this.setState({loading:false});
+		console.log('componentDidMount')
 		// alert('to');
 	}
 	render(){
 		// This waits or componentdidmount to be ready a displays loaders until components ready
 		if(this.state.loading)
-			return null
-
+				return (
+				<div>
+					<BigStoryLoader display={true} loaderOpacity={1}/>
+				</div>)
+		else
 		return(
 		<BrowserRouter>
 			<MuiThemeProvider>

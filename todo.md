@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-Maybe try to think wheter it is better to have an admin button to refresh the database or have a setInterval function making a call, maybe look at possibility of haveing butter cms sending notifications
 
 
-Set up webhooks when connected to the url
-
-https://buttercms.com/docs/api/?go#webhooks
-https://buttercms.com/webhooks/
 
 Thinks abouot how to introduce the main page eg by using https://material.io/guidelines/motion/material-motion.html you can have each main square coming in a material otion kind a way
 
@@ -22,20 +16,14 @@ Maybe have a button to refresh all the home articles. Only have the first page h
 At the end of the articles give the option to the user o react like buzzfeed/ facebook. 
 Add timeout to the loader at route 38; Or maybe add a transition where all the post it pop in like mushrooms with a bit of a fade in efffect or that cool material thingie
 
-The following images are resized in HTML or CSS. Serving scaled images could save 267.0KiB (72% reduction). Find a way to resize images server side 
 
-Really work on the preloader
+[] fix the scss problem in production
 
-fix the scss problem in production
-
-
-Build transition for home element to appear maybe the side ones first then the one in the middle because user will see the middle one first anyway. 
 
 Thing about the best way to introduce the blogpost eg map method v 
 Should store the value of fetch in a variable then propagate it. 
 Think about introducing a  statemnt to catch if the result of the fetch is null
 
-think about populating the state like this when you go from one post to the other you can simply change the states. 
 
 should I have an other db with sluf matched with ids to find stuff more quickly in the db?
 
@@ -45,7 +33,7 @@ For the data loading use example 2 of : https://jimmylv.gitbooks.io/reactjs-in-m
 
 Next to the blog picture have some sticky notes which are comments from users comme des languettes. or maybe it can be a consteltion of related recipes.
 
-Create a loader in blogpost.jsx at the render method level where now there is a brief title. 
+[] Make the loader appear immediately 
 
 See if the  findRelatedPosts function in blogpost.jsx is good and maybe if the limit is too high, it seems like there would be more performent methods of finding tags. Also How to make sure that all these posts fetched are not still in memory somewhere using valuable space.
 
@@ -100,4 +88,8 @@ For the service workers see the implementation of create-react-app
 [] For the mobile version query smaller images.
 [] Make sure that the animation runs before anything is loaded especially on mobile.
 
-[] there is a weird bug, where the picture seems loaded but I can't click it immediately
+[DONE!] there is a weird bug, where the picture seems loaded but I can't click it immediately
+
+[] Inspect the bug, after navigating to a page if I relaod it it probably have to deal with it in the CompoenentUnmount of the blogpost.jsx
+
+[] For optimization of delivery watch the video INstant Loading: 3 key user moments
