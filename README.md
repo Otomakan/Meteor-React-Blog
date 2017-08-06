@@ -14,7 +14,8 @@ You can find a version of it working at
 Even if intial loading can be a bit slow, thanks to React and the general architecture of the app, navigation is really fast I think. 
 
 
-To try out the webhook localy run ./ngrok http 3000 in your project folder then copy the server address and use it to build your webhook in the contentful folder. 
+To try out the webhooks localy run ./ngrok http 3000 in your project root folder then copy the server address and use it to build your webhook in the contentful platform. 
+
 
 <Image> Components takes 3 props : src which is the contentful url, height and width. This will make a query to the Contentful server to return the exact image size you need. Like this you can always have optimized images!
 
