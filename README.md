@@ -56,8 +56,9 @@ In server/main.js replace the Access Tokens with you own. You can find SPACEID a
 My workflow for working with webhooks locally  uses ngrok. You can find more info about it at https://ngrok.com/download.
 
 To try out the webhooks localy run ./ngrok http 3000 in your project root folder then copy the server address and use it to build your webhook in the Contentful platform. 
+All the webhooks related files are in imports/api/public folder. Sorry for the weird organisationm I started with the default meteor project structure, not sure I'm very happy about it. 
 
-During Development 
+##During Development 
 
 
 <Image> Components takes 3 props : src which is the contentful url, height and width. This will make a query to the Contentful server to return the exact image size you need. Like this you can always have optimized images!
