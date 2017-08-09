@@ -42,9 +42,7 @@ import BigStoryLoader from '../ui/components/BigStoryLoader'
 		// This waits or componentdidmount to be ready a displays loaders until components ready
 		if(this.state.loading)
 				return (
-				<div>
-					<BigStoryLoader display={true} loaderOpacity={1}/>
-				</div>)
+				null)
 		else
 		return(
 		<BrowserRouter>

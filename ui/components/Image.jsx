@@ -18,7 +18,6 @@ export default class Image extends Component {
       }
   }
   mouseEnter(){
-    console.log('mouse IN')
     this.setState({
       svgBarOpacity:1
     })
