@@ -22,7 +22,7 @@ const client = contentful.createClient({
 
 
 Meteor.startup(() => {
-	Meteor.call('remove-all')
+	// Meteor.call('remove-all')
 	let blob=0
 	// This content type is posts so that only posts get added to the db
 	client.getEntries({content_type: '2wKn6yEnZewu2SCCkus4as'})

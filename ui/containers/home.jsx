@@ -23,11 +23,12 @@ class Home extends Component {
 			numberOfImagesLoaded :0,
 			displayLoader: true,
 			loaderOpacity:1,
+			picSize:  Math.round(window.innerWidth*0.55),
 		}
 	}
 	renderRightSize(index,blog){
 		return (index===3) ? <Image src={blog.featuredImage.fields.file.url} height='1000' width='1000'/>:
-		<Image src={blog.featuredImage.fields.file.url} height='400' width='400'/>
+		<Image src={blog.featuredImage.fields.file.url} height={this.state.picSize} width={this.state.picSize}/>
 	}
 	renderPosts(){
 		let blogs = this.props.posts;

@@ -2,15 +2,15 @@
 
 This is an example of a blog I built for my little sister using Meteor, React and a headless CMS (Curerently Contentful, but also one ButterCMS branch). I want to make this an easy to setup boilerplate. 
 
-You can find a demo at meteoreactblog.herokuapp.com
+You can find a demo at meteoreactblog.herokuapp.com. Feel free to Contribute and if you need any info drop me a line at meteoreactblog@jmisteli. or maybe just to tell me if you built anything interesting using anything here!
 
 ## TL;DR
 
 The reason for building it this way is that I wanted to build a blog in React but didn't really like working with the current Node CMSs. So I decided to use a headless CMS I started with ButterCMS then used contentful because I can get more free content. Now the problem is that I want to stay in free tier as long as possible which wont be option if there is a request made to headless CMS every time a user logs in (especially that the app is made in such a way that every page requires to load about 6 posts). 
 
-Finally, I chose Meteor as a framework. Why not an other framework? No real reason behind it except that I saw an interesting front-end position which required to know Meteor(Oh! and user Auth seems quite easy to setup). So I want to make this an easy to use boilerplate and maybe  So maybe I'll make an other boilerplate using an other framework (MERN?).
+Finally, I chose Meteor as a framework. Why not an other framework? No real reason behind it except that I wanted to learn a bit more about it (Oh! and user Auth and management seems quite easy to setup). So maybe I'll make an other boilerplate using an other framework.
 
-You can find a version of it working at 
+You can find a version of it working at meteoreactblog.herokuapp.com
 Even if intial loading can be a bit slow, thanks to React and the general architecture of the app, navigation can be quite smooth and fast I think. 
 
 ## Get Started

@@ -13,7 +13,8 @@ import { createContainer } from 'react-meteor-data'
   constructor(props){
   	super(props)
   	this.state={
-  		visible: 0
+  		visible: 0,
+  		picSize:  Math.round(window.innerWidth*0.55),
   	}
   }
 
@@ -33,7 +34,7 @@ import { createContainer } from 'react-meteor-data'
 	   		<div className="nextPostLoader">
 	        	<Link  to={{pathname: nextPost.slug, state: nextPost}}> 
 	        		<div>
-	        		<Image src={nextPost.image} height="400" width="400"/>
+	        		<Image src={nextPost.image} height={this.state.picSize} width={this.state.picSize}/>
 	        		</div>
 	        	</Link>
       		</div>
@@ -47,7 +48,7 @@ import { createContainer } from 'react-meteor-data'
 			console.log(nextPost)
 	        	return (<Link key={index} to={{pathname: nextPost.fields.slug, state: nextPost.fields}}> 
 	        		<div>
-	        		<Image src={nextPost.fields.featuredImage.fields.file.url} height="400" width="400"/>
+	        		<Image src={nextPost.fields.featuredImage.fields.file.url} height={this.state.picSize} width={this.state.picSize}/>
 	        		</div>
 	        	</Link>)
       	})	
