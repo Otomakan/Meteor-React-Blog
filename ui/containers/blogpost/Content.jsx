@@ -6,7 +6,7 @@ import Image from '../../components/Image.jsx'
 export default class Content extends Component{
 	constructor(props) {
 	  super(props)
-	  this.state = { picSize : Math.round(window.innerWidth*0.55) }
+	  this.state = { picSize : Math.round(window.innerHeight*0.4) }
 	}
 
 	componentWillMount(){		

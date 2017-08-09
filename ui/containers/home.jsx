@@ -23,7 +23,7 @@ class Home extends Component {
 			numberOfImagesLoaded :0,
 			displayLoader: true,
 			loaderOpacity:1,
-			picSize:  Math.round(window.innerWidth*0.55),
+			picSize:  Math.round(window.innerHeight*0.4),
 		}
 	}
 	renderRightSize(index,blog){

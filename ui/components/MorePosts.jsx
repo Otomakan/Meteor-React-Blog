@@ -14,7 +14,7 @@ import { createContainer } from 'react-meteor-data'
   	super(props)
   	this.state={
   		visible: 0,
-  		picSize:  Math.round(window.innerWidth*0.55),
+  		picSize:  Math.round(window.innerHeight*0.4),
   	}
   }
 
