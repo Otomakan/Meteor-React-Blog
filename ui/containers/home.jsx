@@ -25,10 +25,11 @@ class Home extends Component {
 			loaderOpacity:1,
 			picSize:  Math.round(window.innerHeight*0.4),
 		}
+		this.imageLoaded = this.imageLoaded.bind(this)
 	}
 	renderRightSize(index,blog){
-		return (index===3) ? <Image src={blog.featuredImage.fields.file.url} height='1000' width='1000'/>:
-		<Image src={blog.featuredImage.fields.file.url} height={this.state.picSize} width={this.state.picSize}/>
+		return (index===3) ? <Image src={blog.featuredImage.fields.file.url} height='1000' width='1000' onImageLoaded={this.imageLoaded}/>:
+		<Image src={blog.featuredImage.fields.file.url} height={this.state.picSize} width={this.state.picSize} onImageLoaded={this.imageLoaded}/>
 	}
 	renderPosts(){
 		let blogs = this.props.posts;
@@ -47,42 +48,43 @@ class Home extends Component {
 				body: blog.body,
 				slug: blog.slug
 			}
+			console.log(content)
 			return (
-				<Link  key={index} imageLoaded={this.imageLoaded()} className="home-left"to={{pathname: linkTo, 
+				<Link  key={index}  className="home-left"to={{pathname: linkTo, 
 					state: content}}  
 				style={{textDecoration: 'none', color: 'white'}}>
-					<Paper>
 					{this.renderRightSize(index,blog)}
 					 <h1>{blog.title}</h1>
 					
-					</Paper>
 				</Link>
 				) 
 		})
+		}
 	}
-}
+
 	imageLoaded(){
+		console.log(this.state.picSize)
 		this.state.numberOfImagesLoaded +=1;
 		if(this.state.numberOfImagesLoaded===5){
 			this.setState({loaderOpacity:0})
-			setTimeout(()=>{this.setState({displayLoader:false})},800)
+			setTimeout(()=>{this.setState({displayLoader:false})},1800)
 		}		
 	}
 
 	displayBigStoryLoader(){
-		setTimeOut(()=>{
+		setTimeout(()=>{
 			if (this.state.numberOfImagesLoaded >=4){
 				return
 			}
 		},4000)
 
 		if (this.state.numberOfImagesLoaded <7)
-			return 
-	}
+			return	}
 	render(){
 		// console.log(this.state.numberOfImagesLoaded)
 		return (
 			<div>
+			 <BigStoryLoader loaderOpacity={this.state.loaderOpacity} display={this.state.displayLoader}/>
 				<div className="container">
 					 <div className="home-header">
 					 {this.renderPosts()}

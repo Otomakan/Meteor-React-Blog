@@ -13,8 +13,8 @@ export default class Image extends Component {
 
   onImageLoaded() {
       this.setState({ imageStatus: 'image image-loaded' });
-      if(this.props.imageLoaded){
-        this.props.imageLoaded()
+      if(this.props.onImageLoaded&& typeof this.props.onImageLoaded ==="function"){
+        this.props.onImageLoaded()
       }
   }
   mouseEnter(){
@@ -33,7 +33,7 @@ export default class Image extends Component {
     return (
       <div className="image-container">
       <img ref="img" alt="no-alt-yet" onMouseEnter={this.mouseEnter.bind(this)} onMouseOut={this.mouseOut.bind(this)} src={this.props.src+'  ?fit=thumb&f=top_left&h='+this.props.height+'&w='+this.props.width} className={this.state.imageStatus} onLoad={this.onImageLoaded.bind(this)} onError={this.onImageError}/>
-        <div className="svg-bar" style={{opacity:this.state.svgBarOpacity}}>
+        <div className="svg-images-bar" style={{opacity:this.state.svgBarOpacity}}>
           <Heart/>
           <Eye/>
           <ShareRocket/>

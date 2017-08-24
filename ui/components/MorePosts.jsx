@@ -27,27 +27,12 @@ import { createContainer } from 'react-meteor-data'
   	this.setState({visible:0})
   }
 
-
-  displayPosts(nextPost){
-  	console.log(nextPost)
-		return (nextPost)? 
-	   		<div className="nextPostLoader">
-	        	<Link  to={{pathname: nextPost.slug, state: nextPost}}> 
-	        		<div>
-	        		<Image src={nextPost.image} height={this.state.picSize} width={this.state.picSize}/>
-	        		</div>
-	        	</Link>
-      		</div>
-		: 
-		<Link  style={{background:'blue'}}to={{pathname: this.props.nextPost.slug}}>Aboutee</Link>
-
-	}
-  countPosts(){
-		let nextPosts = this.props.relatedPosts
-		return  nextPosts.map((nextPost,index)=>{
+  showPosts(){
+  		console.log('counting posts')
+		return  this.props.relatedPosts.map((nextPost,index)=>{
 			console.log(nextPost)
 	        	return (<Link key={index} to={{pathname: nextPost.fields.slug, state: nextPost.fields}}> 
-	        		<div>
+	        		<div className="more-posts-image-container">
 	        		<Image src={nextPost.fields.featuredImage.fields.file.url} height={this.state.picSize} width={this.state.picSize}/>
 	        		</div>
 	        	</Link>)
@@ -56,7 +41,7 @@ import { createContainer } from 'react-meteor-data'
   }
   render() {
     return (this.props.dataReady)?
-     <div className="nextPostLoader">{this.countPosts()}</div>
+     <div className="nextPostLoader">{this.showPosts()}</div>
      :null
   
   }
@@ -66,11 +51,9 @@ export default MorePostsContainer = createContainer((props)=>{
 
 	let handle = Meteor.subscribe('posts')
 	let relatedPosts =null
-	console.log(props.currentPost)
 	if(handle.ready()){
 		relatedPosts = findRelatedPosts(Posts, 'food', 3, props.currentPost)
 	}
-	// console.log(Posts.count())
 	return {
 		dataReady: handle.ready(),
 		relatedPosts : relatedPosts ? relatedPosts : null
@@ -84,7 +67,7 @@ function findRelatedPosts(db, tags, numbPostsNeeded, excludeIds){
 
 	let final =[]
 	let sameTagsPosts= Posts.find({"fields.tags": tags, _id: {$ne:excludeIds}},{limit:30}).fetch()
-	console.log(sameTagsPosts)
+	// console.log(sameTagsPosts)
 	let exception=[-1]
 	for(let x=0; x<numbPostsNeeded; x++){
 		let tagNum = getRandomIntExpt(sameTagsPosts.length, exception)

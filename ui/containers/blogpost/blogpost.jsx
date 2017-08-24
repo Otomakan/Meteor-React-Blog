@@ -46,22 +46,25 @@ class BlogPost extends Component {
 		// console.log('componentWillUpdate')
 	}
 	componentWillReceiveProps(props){
-		console.log(props.location.state)
-		if(props.location.state)
+		if(props.location.state){
+			console.log('fetching')
 			this.displayPreviousProps(props.location.state)
+		}
 		//if it is a direct link go use the db data
-		else
+		else{
 			this.displayFetchedPost(props.blogpost[0].fields)
-		console.log(this.state)
+		}
 	
 	}
 	displayPreviousProps(blogpost){
+		console.log(blogpost)
 		this.setState({
 			title: blogpost.title || null,
 			image: blogpost.featuredImage.fields.file.url || null,
 			content: blogpost.body || null,
 			author: blogpost.author[0].fields.name|| null,
 			slug: blogpost.slug || null,
+			_id: blogpost._id || null,
 		})
 
 	}
@@ -72,7 +75,8 @@ class BlogPost extends Component {
 			title: post.title||"Post not Found :(",
 			image: post.featuredImage.fields.file.url || 'nop',
 			content: post.body || "Try looking some other amazing recipes",
-			author:  post.author[0].fields.name || 'No Author'
+			author:  post.author[0].fields.name || 'No Author',			
+			_id: post._id || null
 		})
 
 	}
@@ -91,9 +95,8 @@ class BlogPost extends Component {
 	}
 
 	nextPost(){
-		// console.log(this.props.relatedPosts)
+		console.log('next post')
 		let blog = this.props.relatedPosts[0].fields
-		// console.log(this.props.location.state.title)
 		return 	 {
 				title: blog.title,
 				image: blog.featuredImage.fields.file.url||'no-image',
@@ -108,23 +111,24 @@ class BlogPost extends Component {
 	componentDidMount(){
 		this.setState({componentDidMount:true})
 	}
+	componentWillMount(){
+		this.setState({componentDidMount:false})
+	}
 	showMorePost(){
-		// console.log(this.props.blogpost[0]._id)
-		return (this.state.componentDidMount)? <MorePosts currentPost={this.props.blogpost[0]._id}/> :null
+		console.log(this.state.componentDidMount)
+		console.log(this.state)
+		return (this.props.blogpost[0])? <MorePosts currentPost={this.props.blogpost[0]._id}/> : (this.state._id)?  <MorePosts currentPost={this.state._id}/> : null
 	}
 
 	// If the data fatched is ready this will display a link to the next post
-
 	// Related Post not Found
-
-
 	render(){
 		// If we get stuff from the props we might as well use them if not then we go use the data we fetched
 		return (this.props.location.state) ? 
 		<div className="blog-post">
 			<Content post={this.state}/>
 			<h1> This props location state</h1>
-			<h3> A blog by  {this.state.author}</h3>
+			<h3> A blog by  {this.state.author.fields}</h3>
 			{this.showMorePost()}
 		</div> 
 		: (this.props.dataReady)? 
@@ -139,7 +143,6 @@ class BlogPost extends Component {
 			<h1>Sorry for your trouble!</h1>
 		</div> 
 	}
-
 	
 }
 

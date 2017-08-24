@@ -4,6 +4,7 @@ import '../imports/api/public/webhooks.js'
 //Should I leave Butterlist.then in the startup function 
 //or should I keeap it as an import 
 // import '../imports/api/server/fetchblog.js'
+
 'use strict'
 
 const contentful = require('contentful')
@@ -25,7 +26,7 @@ Meteor.startup(() => {
 	// Meteor.call('remove-all')
 	// let blob=0
 	// // This content type is posts so that only posts get added to the db
-	// client.getEntries({content_type: '2wKn6yEnZewu2SCCkus4as'})
+	// client.getEntries({content_type: '2wKn6yEnZewu2SCCkus4as', order:'-sys.createdAt'})
 	// .then((res)=> {
 	// 	res.items.map((entry, index)=> {
 	// 		if(blob===0)
@@ -39,7 +40,9 @@ Meteor.startup(() => {
 	// .catch((err)=> console.log(err))
 });
 
+
 Meteor.setInterval(()=>{
 
+	},30000)
 
-},30000)
+
