@@ -127,8 +127,6 @@ class BlogPost extends Component {
 		return (this.props.location.state) ? 
 		<div className="blog-post">
 			<Content post={this.state}/>
-			<h1> This props location state</h1>
-			<h3> A blog by  {this.state.author.fields}</h3>
 			{this.showMorePost()}
 		</div> 
 		: (this.props.dataReady)? 

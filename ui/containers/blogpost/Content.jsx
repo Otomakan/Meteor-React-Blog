@@ -39,13 +39,17 @@ export default class Content extends Component{
 
 	render(){
 		return(
-			<div>
+			<div className="blog-content">
 				<div className="blog-image">
 					<div className="blog-image-container">
 						<Image src={this.props.post.image} height={this.state.picSize} width={this.state.picSize}/>
 					</div>
-					<h1>{this.props.post.title}</h1>
+					<div className="title">
+						<h1>{this.props.post.title}</h1>
+					</div>
 				</div>
+
+					<h3> A blog by  {this.props.post.author}</h3>
 					<h2> {this.props.summary}</h2>
 				<div className="section">
 				<ReactMarkdown source={this.state.text}/>
