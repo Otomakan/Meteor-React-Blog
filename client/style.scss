@@ -287,10 +287,9 @@ nav {
 		background-color:rgba(163, 168, 175, 0.5);
 		width:100%;
 		z-index:2;
-		opacity: 0;
-	
+		opacity: 0;	
 		svg{
-			height:60%;
+			height:20%;
 			float:right;
 			margin:10px 10px 0 10px;
 		}
@@ -380,6 +379,33 @@ nav {
 		}		
 	}
 }
+
+
+@media (max-width:1130px){
+	.nextPostLoader{
+		position:fixed;
+		display:flex;
+		bottom:0;
+		top:auto;
+		left:0;
+		height:33.3333vw;
+		width:100vw;
+		background-color:$pink;
+	.more-posts-image-container{
+		height:33.3333vw;
+		width:33.3333vw;
+		margin:0;
+		// position:relative;
+		// display:flex;
+		padding:0;
+		img{
+			height:33.3333vw;
+		}		
+	}
+}
+}
+
+
 
 /*Background*/
 .fruits-svg {

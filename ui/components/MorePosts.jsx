@@ -31,7 +31,8 @@ import { createContainer } from 'react-meteor-data'
   		console.log('counting posts')
 		return  this.props.relatedPosts.map((nextPost,index)=>{
 			console.log(nextPost)
-	        	return (<Link key={index} to={{pathname: nextPost.fields.slug, state: nextPost.fields}}> 
+	        	return (
+	        	<Link key={index} to={{pathname: nextPost.fields.slug, state: nextPost.fields}}> 
 	        		<div className="more-posts-image-container">
 	        		<Image src={nextPost.fields.featuredImage.fields.file.url} height={this.state.picSize} width={this.state.picSize}/>
 	        		</div>

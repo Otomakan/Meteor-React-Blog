@@ -8,7 +8,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 
-import App from '../ui/containers/App.jsx'
+import Routes from '../ui/containers/Routes.jsx'
 
 import { Posts } from '../imports/api/blogs.js'
 // const browserHistory = createBrowserHistory();
@@ -21,7 +21,7 @@ import BigStoryLoader from '../ui/components/BigStoryLoader'
 
 
 
- export default class Routes extends Component {
+ export default class AppContainer extends Component {
  	constructor(props){
  		super(props)
  		this.state = {
@@ -47,7 +47,7 @@ import BigStoryLoader from '../ui/components/BigStoryLoader'
 		return(
 		<BrowserRouter>
 			<MuiThemeProvider>
-		 	<App />	 		
+		 	<Routes />	 		
 			</MuiThemeProvider>
 		</BrowserRouter>
 		 )

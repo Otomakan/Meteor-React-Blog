@@ -27,7 +27,7 @@ navbar.links = [
     {linkTo: "/", text: "Home"}
   ]
 
-export default class App extends Component {
+export default class Routes extends Component {
 		constructor(props){
 		super(props)
 		this.state = {
